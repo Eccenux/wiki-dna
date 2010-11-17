@@ -5,7 +5,7 @@
 	@Author
 		Copyright ©2010 Maciej Jaros (pl:User:Nux, en:User:Nux)
 	@Version
-		0.0.2
+		0.0.3
 	
 	@section License
 	

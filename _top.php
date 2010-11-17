@@ -4,6 +4,13 @@
 		die ('GO AWAY!');
 	}
 	
+	// set timezone
+	// @todo check if this won't mess with time...
+	if (function_exists('date_default_timezone_set'))
+	{
+		date_default_timezone_set('Europe/Paris');
+	}
+	
 	// parse config file
 	if (function_exists('posix_getuid'))
 	{
@@ -26,4 +33,8 @@
 	// include other classes
 	require_once './lib/ticks.class.php';
 	require_once './lib/cache.class.php';
+
+	// error handling
+	include './lib/fun_error.php';
+	init_myErrorHandler();
 ?>
