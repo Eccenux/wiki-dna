@@ -120,6 +120,11 @@ class cMainData
 	*/
 	public function pf_getPageLastLens(&$arrPages, $strDay, $numDateTZ)//, $numMinStartSize)
 	{
+		if (empty($arrPages))
+		{
+			return array();
+		}
+
 		// gen dt stamps SQL 
 		$vStamps = $this->pf_genDTStampsSQL($strDay, $numDateTZ);
 		
@@ -170,6 +175,11 @@ class cMainData
 	*/
 	public function pf_getUserInfo(&$arrPages)
 	{
+		if (empty($arrPages))
+		{
+			return array();
+		}
+
 		$oArraySelector = new cArraySelector();
 		$vUsers = $oArraySelector->pf_selectData($arrPages, 'user_id');
 
@@ -192,19 +202,24 @@ class cMainData
 	/*!
 		@brief Get page title for DNA
 		
-		Gets page titles for the pages given in the pages array.
+		Gets page titles and namespace for the pages given in the pages array.
 		Does not append this data beacuse it might be easier to refresh redirects this way.
 		
 		@param [in] $arrPages The array of pages containing at least page_id
 		
-		@return an array with key=>val set to: page_id=>page_title
+		@return an array with key=>val set to: page_id=>array('page_title'=>..., 'page_namespace'=>...)
 	*/
 	public function pf_getPageTitles(&$arrPages)
 	{
+		if (empty($arrPages))
+		{
+			return array();
+		}
+
 		$oArraySelector = new cArraySelector();
 		$vPages = $oArraySelector->pf_selectData($arrPages, 'page_id');
 
-		$strSQL = "SELECT page_id, page_title FROM page
+		$strSQL = "SELECT page_id, page_title, page_namespace FROM page
 			WHERE
 				page_id IN ($vPages)
 		";
@@ -214,7 +229,7 @@ class cMainData
 		{
 			foreach ($vPages as $arr)
 			{
-				$arrRet[$arr['page_id']] = $arr['page_title'];
+				$arrRet[$arr['page_id']] = array('page_title'=>$arr['page_title'], 'page_namespace'=>$arr['page_namespace']);
 			}
 		}
 		return $arrRet;

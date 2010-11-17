@@ -23,6 +23,7 @@
 		$arrSrcDb['user'], $arrSrcDb['password']
 	);
 
-	// include ticks class
+	// include other classes
 	require_once './lib/ticks.class.php';
+	require_once './lib/cache.class.php';
 ?>

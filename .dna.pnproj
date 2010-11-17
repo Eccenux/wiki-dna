@@ -1,1 +1,1 @@
-<Project name=".dna"></Project>
+<Project name=".dna"><Folder name="lib"><File path="lib\arrayselect.class.php"></File><File path="lib\data.class.php"></File><File path="lib\ticks.class.php"></File><File path="lib\cache.class.php"></File></Folder><File path=".my.cnf"></File><File path="_test.php"></File><File path="_top.php"></File><File path="index.php"></File><File path="_test2.php"></File></Project>

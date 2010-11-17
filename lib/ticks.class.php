@@ -23,7 +23,7 @@ class cTicks
 	}
 
 	//! Insert a named tick
-	//! \b Note! Always call ins and end tick in pairs!
+	//! @warning Always call ins and end tick in pairs!
 	public function pf_insTick($strTickName)
 	{
 		$this->arrTicks[$strTickName] = $this->pf_getTickStamp();
