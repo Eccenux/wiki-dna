@@ -1,11 +1,17 @@
 <?
+/*!
+	@file
+	@brief Init file to be included on top
+	
+	This includes some libraries and sets up some general stuff.
+*/
 	if (!defined('NO_HACKING'))
 	{
 		die ('GO AWAY!');
 	}
 	
 	// set timezone
-	// @todo check if this won't mess with time...
+	//! @todo check if this won't mess with time...
 	if (function_exists('date_default_timezone_set'))
 	{
 		date_default_timezone_set('Europe/Paris');

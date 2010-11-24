@@ -1,56 +1,29 @@
 <?php
 /*!
-	@brief Articles stats for a specified date [[:pl:WP:DNA]]
+	@file
+	@brief Main file
 	
-	@Author
-		Copyright ©2010 Maciej Jaros (pl:User:Nux, en:User:Nux)
-	@Version
-		0.0.3
-	
-	@section License
-	
-	You can use this program under the terms of any of the below licenses.
-	Note that in any case you have to state the author.
-	
-	@subsection GPL GNU GPL v2
-	This program is free software; you can redistribute it and/or
-	modify it under the terms of the GNU General Public License as
-	published by the Free Software Foundation; version 2 of the License.
+	@see Basic information page (.info.php) for details about the license and project description.
 
-	This program is distributed in the hope that it will be useful, but
-	WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
-	General Public License for more details at:
-	http://www.gnu.org/copyleft/gpl.html
+	@todo Filter out pages that are not in the main namespace (any way to check in which namespace they were?)
 
-	@subsection CCBYSA CC-BY-SA 3.0
-	Creative Commons Attribution-ShareAlike 3.0 is described at:
-	http://creativecommons.org/licenses/by-sa/3.0/
-	
-	Polska wersja licencji:
-	http://creativecommons.org/licenses/by-sa/3.0/deed.pl
-	
-	@section TODO
-	@subsection TODOP1 Most important
-	spr. czy jest to data dla zakończonego dnia i jeśli tak:
-		spr. czy już obliczono dane i jeśli tak:	[todo]
-			zaserwuj dane z cache
-		else
-			oblicz dane	[done]
-			zapisz dane	[todo]
-	else
-	@subsection TODOP2 Later
-		spr. czy dane obliczono dawniej niż X temu (X=15 minut?) i jeśli tak:
-			oblicz dane
-			zapisz dane
-		else
-			zaserwuj dane z cache
-			
-		2 i 3 można by robić ekstra (na życzenie) także żeby odświeżyć archiwalne zliczarki
-		
-	@subsection TODOP3 Maybe someday...
-		Filter out pages that were redirects at the end of the day? '/^#(?:REDIRECT|PRZEKIERUJ|TAM|PATRZ)/i'
-		Not really needed due to 2kB limit
+	@todo Form data to be user-centric
+	\code
+	user_id => array (
+		'user_name' =>,
+		'total_ok' =>,
+		'total_nonok' =>,
+		'total_len' =>,
+		'pages' => array(
+			'page_id' =>,
+			'page_title' =>,
+			'start_len' =>,
+			'end_len' =>,
+		)
+	)
+	\endcode
+
+	@todo Test output - to be removed
 */
 define('NO_HACKING', 1);
 header("Content-type: text/plain; charset=utf-8");
@@ -98,7 +71,7 @@ if ($arrPageLastLen===false)
 	$oTicks->pf_endTick('page last lens');
 
 	// only to be refreshed upon bug or if pages for the given date were not complete
-	//! @todo: figure out what did I mean by "complete" :-)
+	//! @todo figure out what did I mean by "complete" :-)
 	$oCache->pf_writeToCache($arrMyCnf['dna']['cache_last_len_name'], $strDate2Check, $arrPageLastLen);
 }
 
@@ -128,26 +101,8 @@ if ($arrPageExtra===false)
 	$oCache->pf_writeToCache($arrMyCnf['dna']['cache_page_extra_name'], $strDate2Check, $arrPageExtra);
 }
 
-//! @todo Filter out pages that are not in the main namespace (any way to check in which namespace they were?)
-
-//! @todo Form data to be user-centric
-/*
-	user_id => array (
-		'user_name' =>,
-		'total_ok' =>,
-		'total_nonok' =>,
-		'total_len' =>,
-		'pages' => array(
-			'page_id' =>,
-			'page_title' =>,
-			'start_len' =>,
-			'end_len' =>,
-		)
-	)
-*/
-
 //
-//! @todo TEST output (to be removed)
+// Output
 //
 echo "\n";	var_export($arrPages);
 echo "\n";	var_export($arrPageExtra);

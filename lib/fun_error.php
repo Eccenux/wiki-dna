@@ -1,27 +1,30 @@
 <?
-/* --------------------------------------------------------- *\
-	Plik: fun_error
+/*!
+	@file
+	@brief Functions for error-handling stuff
 	
-	Zbiór funkcji do przetwarzania/obsługiwania błędów.
+	Basic usage:
 	
-	Użycie
-		Wywołania błędów
-		trigger_error (string error_msg, int error_type)
-		* Dla SQL
-			trigger_error ('[sql]:'.$zapytanie, E_USER_ERROR);
-		* Inne (DEBUG_MODE = 1)
-			trigger_error ('tekst błędu', E_USER_ERROR);
-			trigger_error ('tekst błędu', E_USER_WARNING);
-			trigger_error ('tekst błędu', E_USER_NOTICE);
-		* Testowe wyswietlanie zawrtosci zmiennych
-			trigger_error (myVarDump($zmienna), E_USER_NOTICE);
-			lub
-			bug('zmienna');
+	For SQL
+		\code
+		trigger_error ('[sql]:'.$zapytanie, E_USER_ERROR);
+		\endcode
+	Other (DEBUG_MODE = 1)
+		\code
+		trigger_error ('tekst błędu', E_USER_ERROR);
+		trigger_error ('tekst błędu', E_USER_WARNING);
+		trigger_error ('tekst błędu', E_USER_NOTICE);
+		\endcode
+	Showing variables when doing various test
+		\code
+		trigger_error (myVarDump($zmienna), E_USER_NOTICE);
+		or
+		bug('zmienna');
+		\endcode
 			
-		TODO:
-		* parsowanie backtracka
-		* zmiana sposobu wyświetlania śledzenia (pominięcie trigger_error)
-\* --------------------------------------------------------- */
+	@todo parsowanie backtracka
+	@todo zmiana sposobu wyświetlania śledzenia (pominięcie trigger_error)
+*/
 
 /*
 */
