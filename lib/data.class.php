@@ -59,8 +59,10 @@ class cMainData
 		@param [in] $strDay The day to check
 		@param [in] $numDateTZ A project timezone at that date
 		
-		@todo when date in recentchanges -> get (rc_user AS) user_id, (rc_cur_id AS) page_id, (rc_new_len AS) start_len FROM recentchanges
-		@todo cache parts by date or rc_id/rev_id
+		@if TODOP2_DONE
+			@todo when date in recentchanges -> get (rc_user AS) user_id, (rc_cur_id AS) page_id, (rc_new_len AS) start_len FROM recentchanges
+			@todo cache parts by date or rc_id/rev_id
+		@endif
 		
 		@return $arrPages an array of pages containing: user_id, page_id, start_len
 	*/

@@ -21,9 +21,11 @@
 		or
 		bug('zmienna');
 		\endcode
-			
-	@todo parsowanie backtracka
-	@todo zmiana sposobu wyświetlania śledzenia (pominięcie trigger_error)
+
+	@if CHANGE_ERRORH
+		@todo parsowanie backtracka
+		@todo zmiana sposobu wyświetlania śledzenia (pominięcie trigger_error)
+	@endif
 */
 
 /*

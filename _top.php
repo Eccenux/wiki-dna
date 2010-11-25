@@ -11,9 +11,13 @@
 	}
 	
 	// set timezone
-	//! @todo check if this won't mess with time...
 	if (function_exists('date_default_timezone_set'))
 	{
+		/**
+			@if TODOP1_DONE
+				@test check if setting timezone won't mess with time...
+			@endif
+		*/
 		date_default_timezone_set('Europe/Paris');
 	}
 	

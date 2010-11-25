@@ -1,16 +1,17 @@
 <?php
 /*!
-	@page maininfo Basic information
+	@mainpage Project description
 	
-	Articles stats for a specified date [[:pl:WP:DNA]].
-	
-	General stats:
+	This project is aimed at getting user-centric article statistics for a specified date.
+	@li DNA contest page:
+	http://pl.wikipedia.org/wiki/WP:DNA
+	@li General stats page:
 	http://pl.wikipedia.org/wiki/Wikipedia:Dzie%C5%84_Nowego_Artyku%C5%82u/statystyki
 	
 	@author
 		Copyright ©2010 Maciej Jaros (pl:User:Nux, en:User:Nux)
 	@version
-		0.0.3
+		0.0.4
 	
 	@section License
 	
@@ -36,14 +37,17 @@
 	http://creativecommons.org/licenses/by-sa/3.0/deed.pl
 	
 	@section TODO
+	
 	@subsection TODOP1 Most important
 		\li Deny request for calculating future and present dates
 		\li Filter out pages that are not in the main namespace (any way to check in which namespace they were?)
 		\li Form data to be user-centric
 		\li Header and footer template (include tick in the footer)
 		\li Display data template
+		
 	@subsection TODOP2 Later
 	@subsubsection day-ended
+	\code
 		if day eneded:
 			do as we do (serve most from cache)
 		else
@@ -52,11 +56,14 @@
 				re-calculate
 			else
 				serve from cache
+	\endcode
 	@subsubsection invalidate
 		invalidate user and page-extra data (helpfull when user or page name/title was changed)
 		
-	@subsection TODOP3 Maybe someday...
-		Filter out pages that were redirects at the end of the day? '/^#(?:REDIRECT|PRZEKIERUJ|TAM|PATRZ)/i'
-		Not really needed due to 2kB limit
+	@if TODOP2_DONE
+		@subsection TODOP3 Maybe someday...
+			Filter out pages that were redirects at the end of the day? '/^#(?:REDIRECT|PRZEKIERUJ|TAM|PATRZ)/i'
+			Not really needed due to 2kB limit
+	@endif
 */
 ?>
