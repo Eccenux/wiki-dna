@@ -23,7 +23,9 @@ class cMainData
 		$this->db = new PDO(
 			"mysql:host={$strHost};dbname={$strDbName}",
 			$strUser, $strPass,
-			array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")
+			array()
+			// TS usues latin1_bin...
+			//array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")
 		); 
 	}
 
