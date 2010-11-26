@@ -10,6 +10,9 @@ define('NO_HACKING', 1);
 //header("Content-type: text/plain; charset=utf-8");
 require('./_top.php');
 
+// time limit
+set_time_limit(600); 
+
 //
 // Preformat some variables
 //
@@ -31,6 +34,10 @@ if (empty($strDate2Check))
 else if (!preg_match('#^[0-9]{4}-[0-9]{2}-[0-9]{2}$#', $strDate2Check))
 {
 	$strDieMessage = 'Nieprawidłowy format daty. Prawidłowy format to: RRRR-MM-DD.';
+}
+else if (!preg_match('#^2010-([0-9]{2})-\1$#', $strDate2Check))
+{
+	$strDieMessage = 'Obecnie dopuszczalne są tylko daty z roku 2010 dotyczące DNA. Obliczanie innych dat na życzenie (skontaktuj się ze mną przez Wiki).';
 }
 else
 {
