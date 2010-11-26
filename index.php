@@ -14,7 +14,7 @@ require('./_top.php');
 // Preformat some variables
 //
 $strDate2Check = empty($_GET['D']) ? '' : $_GET['D'];
-$numDateTZ = $arrMyCnf['dna']['tz'];
+//$numDateTZ = $arrMyCnf['dna']['tz'];
 $numMinEndSize = $arrMyCnf['dna']['min_len'];
 $strPageTitle = 'DNA';
 $strDieMessage = '';
@@ -22,15 +22,19 @@ $strTplFile = 'data';
 $strPageBaseURL = $arrSrcDb['page_base_url'];
 
 //
-// Check date format
+// Check date format, get timezone
 //
 if (empty($strDate2Check))
 {
 	$strTplFile = 'index';
 }
-if (!empty($strDate2Check) && !preg_match('#^[0-9]{4}-[0-9]{2}-[0-9]{2}$#', $strDate2Check))
+else if (!preg_match('#^[0-9]{4}-[0-9]{2}-[0-9]{2}$#', $strDate2Check))
 {
 	$strDieMessage = 'Nieprawidłowy format daty. Prawidłowy format to: RRRR-MM-DD.';
+}
+else
+{
+	$numDateTZ = date("Z",strtotime($strDate2Check))/3600;
 }
 
 //

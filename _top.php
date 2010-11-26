@@ -10,27 +10,16 @@
 		die ('GO AWAY!');
 	}
 	
-	// set timezone
-	if (function_exists('date_default_timezone_set'))
-	{
-		/**
-			@if TODOP1_DONE
-				@test check if setting timezone won't mess with time...
-			@endif
-		*/
-		date_default_timezone_set('Europe/Paris');
-	}
-	
 	// parse config file
-	if (function_exists('posix_getuid'))
+	if (function_exists('posix_getuid'))	// on toolserver
 	{
 		$arrUserInfo = posix_getpwuid(posix_getuid());
 	}
-	else
+	else	// this works for me ;-)
 	{
 		$arrUserInfo['dir'] = '.';
 	}
-	$arrMyCnf = parse_ini_file($arrUserInfo['dir'] . "/.my.cnf", true);
+	$arrMyCnf = parse_ini_file($arrUserInfo['dir'] . "/.my.script.cnf", true);
 
 	// init data manipulation
 	require_once './lib/data.class.php';
@@ -39,6 +28,16 @@
 		$arrSrcDb['host'], $arrSrcDb['dbname'],
 		$arrSrcDb['user'], $arrSrcDb['password']
 	);
+
+	// set timezone
+	if (function_exists('date_default_timezone_set'))
+	{
+		date_default_timezone_set($arrMyCnf['dna']['proj_tz']);
+	}
+	else
+	{
+		die ('date_default_timezone_set does not exist!');
+	}
 
 	// include other classes
 	require_once './lib/ticks.class.php';
