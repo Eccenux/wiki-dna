@@ -7,31 +7,72 @@
 	@see \a index.getdata.php for details about the license and description of this project.
 */
 define('NO_HACKING', 1);
-header("Content-type: text/plain; charset=utf-8");
+//header("Content-type: text/plain; charset=utf-8");
 require('./_top.php');
 
 //
 // Preformat some variables
 //
 $strDate2Check = empty($_GET['D']) ? '' : $_GET['D'];
-if (!preg_match('#^[0-9]{4}-[0-9]{2}-[0-9]{2}$#', $strDate2Check))
-{
-	die ('Sorry, see you later!');
-}
 $numDateTZ = $arrMyCnf['dna']['tz'];
 $numMinEndSize = $arrMyCnf['dna']['min_len'];
+$strPageTitle = 'DNA';
+$strDieMessage = '';
+$strTplFile = 'data';
+$strPageBaseURL = $arrSrcDb['page_base_url'];
+
+//
+// Check date format
+//
+if (empty($strDate2Check))
+{
+	$strTplFile = 'index';
+}
+if (!empty($strDate2Check) && !preg_match('#^[0-9]{4}-[0-9]{2}-[0-9]{2}$#', $strDate2Check))
+{
+	$strDieMessage = 'Nieprawidłowy format daty. Prawidłowy format to: RRRR-MM-DD.';
+}
+
+//
+// Deny request for calculating unfinished date
+//
+if (!empty($strDate2Check) && empty($strDieMessage))
+{
+	$dtEnd = strtotime("{$strDate2Check} -$numDateTZ hours")+24*3600;
+	$dtNow = time();
+	if ($dtNow<=$dtEnd)
+	{
+		$strDieMessage = 'Skrypt umożliwia obliczanie danych tylko dla dat z przeszłości.';
+	}
+}
 
 //
 // Get \a $arrDNAUserData and \a $oTicks
 //
-require('./index.getdata.php');
+if (!empty($strDate2Check) && empty($strDieMessage))
+{
+	require('./index.getdata.php');
+}
+
+//
+// Form ticks
+//
+if (!empty($oTicks))
+{
+	$arrTicks = $oTicks->pf_getDurations();
+}
 
 //
 // Output
 //
-echo "\n\n==arrDNAUserData==\n";	var_export($arrDNAUserData);
-
-$arrTicks = $oTicks->pf_getDurations();
-echo "\n\n==arrTicks==\n";	var_export($arrTicks);
-
+include('./view/_header.tpl.php');
+if (empty($strDieMessage))
+{
+	include("./view/$strTplFile.tpl.php");
+}
+else
+{
+	echo $strDieMessage;
+}
+include('./view/_footer.tpl.php');
 ?>

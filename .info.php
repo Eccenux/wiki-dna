@@ -11,12 +11,15 @@
 	@author
 		Copyright ©2010 Maciej Jaros (pl:User:Nux, en:User:Nux)
 	@version
-		0.0.4
+		0.1.0
 	
 	@section License
 	
 	You can use this program under the terms of any of the below licenses.
 	Note that in any case you have to state the author.
+	
+	@note Logo used in the header was made by Artur Jan Fijałkowski (WarX)
+	@note http://pl.wikipedia.org/wiki/Plik:Wikimedia_Community_Logo-Toolserver.svg
 	
 	@subsection GPL GNU GPL v2
 	This program is free software; you can redistribute it and/or
@@ -39,11 +42,7 @@
 	@section TODO
 	
 	@subsection TODOP1 Most important
-		\li Deny request for calculating future and present dates
-		\li Filter out pages that are not in the main namespace (any way to check in which namespace they were?)
-		\li Form data to be user-centric
-		\li Header and footer template (include tick in the footer)
-		\li Display data template
+		\li -
 		
 	@subsection TODOP2 Later
 	@subsubsection day-ended

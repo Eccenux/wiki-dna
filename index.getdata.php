@@ -119,7 +119,7 @@ foreach ($arrPages as $p)
 	{
 		$arrDNAUserData[$uid] = array
 		(
-			'user_name' => $arrUsers[$uid],
+			'user_name' => isset($arrUsers[$uid])?$arrUsers[$uid]:'',
 			'total_ok' => 0,
 			'total_nonok' => 0,
 			'total_len' => 0,
@@ -136,6 +136,31 @@ foreach ($arrPages as $p)
 	);
 }
 /**/
+
+//
+// Remove used data
+//
+unset($arrPages, $arrPageExtra, $arrPageLastLen, $arrUsers);
+
+//
+// Sort functions
+//
+function pf_cmpUsers($b, $a)
+{
+    if ($a['total_ok'] == $b['total_ok'])
+	{
+        return ($a['total_len'] - $b['total_len']);
+    }
+    return ($a['total_ok'] - $b['total_ok']);
+}
+function pf_cmpPages($b, $a)
+{
+    if ($a['end_len'] == $b['end_len'])
+	{
+        return ($a['start_len'] - $b['start_len']);
+    }
+    return ($a['end_len'] - $b['end_len']);
+}
 
 /**/
 //
@@ -155,12 +180,9 @@ foreach ($arrDNAUserData as &$u)
 		}
 		$u['total_len']+=$p['end_len'];
 	}
+	usort($u['pages'], "pf_cmpPages");
 }
 /**/
-
-//
-// 7. Remove used data
-//
-unset($arrPages, $arrPageExtra, $arrPageLastLen, $arrUsers);
+usort($arrDNAUserData, "pf_cmpUsers");
 
 ?>
