@@ -40,7 +40,7 @@
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classc_main_data.html#a32132616ef24032e4e7b85f29e7b969e">__construct</a> ($strHost, $strDbName, $strUser, $strPass)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Last PDO Statement.  <a href="#a32132616ef24032e4e7b85f29e7b969e"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct.  <a href="#a32132616ef24032e4e7b85f29e7b969e"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classc_main_data.html#a76130350375427fff9c14a161b2b36f8">pf_getPagesBasics</a> ($strDay, $numDateTZ)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get basic page info for DNA.  <a href="#a76130350375427fff9c14a161b2b36f8"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classc_main_data.html#a69f4f4f0cfa46033c0d66cb7f360e300">pf_getPageLastLens</a> (&amp;$arrPages, $strDay, $numDateTZ)</td></tr>
@@ -59,9 +59,12 @@ Private Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Throw SQL Error.  <a href="#a66b67d356902020dd46c7a1748fa8c69"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1fa3127fc82f96b1436d871ef02be319"></a><!-- doxytag: member="cMainData::$db" ref="a1fa3127fc82f96b1436d871ef02be319" args="" -->
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classc_main_data.html#a1fa3127fc82f96b1436d871ef02be319">$db</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">PDO object. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a726c82bad8f2834de7db5ab692fdd238"></a><!-- doxytag: member="cMainData::$dbSt" ref="a726c82bad8f2834de7db5ab692fdd238" args="" -->
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classc_main_data.html#a726c82bad8f2834de7db5ab692fdd238">$dbSt</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">PDO object. <br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Last PDO Statement. <br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>Data manipulation class. </p>
@@ -103,8 +106,7 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Last PDO Statement. </p>
-<p>Construct</p>
+<p>Construct. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">$strHost</td><td>Database host </td></tr>

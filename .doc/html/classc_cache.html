@@ -40,7 +40,7 @@
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classc_cache.html#a8d2ba07c360a70b82427b0191dad72a4">__construct</a> ($strCacheSalt='', $strCachePath='./cache/')</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">More or less random string to be appended to a file name.  <a href="#a8d2ba07c360a70b82427b0191dad72a4"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a8d2ba07c360a70b82427b0191dad72a4"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classc_cache.html#a57faa83dd27a102ac93eca151602e86a">pf_writeToCache</a> ($strCacheName, $strCacheKey, $vCacheMe)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Write data to cache.  <a href="#a57faa83dd27a102ac93eca151602e86a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classc_cache.html#a53b1ce283e754875f2f137da6bcc81dd">pf_readFromCache</a> ($strCacheName, $strCacheKey)</td></tr>
@@ -51,7 +51,11 @@ Private Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a name of a file.  <a href="#ac5f55222f55691b970ff862650c31a2f"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classc_cache.html#abc47213eb5b531d9f80c0d395e8de59a">$strCacheSalt</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classc_cache.html#ad81f54ffbdbe8de4f71e9ee38e9250ae">$strCachePath</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Realtive or absolute path to a folder that will contain cache.  <a href="#ad81f54ffbdbe8de4f71e9ee38e9250ae"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abc47213eb5b531d9f80c0d395e8de59a"></a><!-- doxytag: member="cCache::$strCacheSalt" ref="abc47213eb5b531d9f80c0d395e8de59a" args="" -->
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classc_cache.html#abc47213eb5b531d9f80c0d395e8de59a">$strCacheSalt</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">More or less random string to be appended to a file name. <br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>Data caching class. </p>
@@ -81,8 +85,7 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>More or less random string to be appended to a file name. </p>
-<p>Constructor</p>
+<p>Constructor. </p>
 <p>Use <em>$strCachePath</em> to change the default folder.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
@@ -223,17 +226,19 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <hr/><h2>Field Documentation</h2>
-<a class="anchor" id="abc47213eb5b531d9f80c0d395e8de59a"></a><!-- doxytag: member="cCache::$strCacheSalt" ref="abc47213eb5b531d9f80c0d395e8de59a" args="" -->
+<a class="anchor" id="ad81f54ffbdbe8de4f71e9ee38e9250ae"></a><!-- doxytag: member="cCache::$strCachePath" ref="ad81f54ffbdbe8de4f71e9ee38e9250ae" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">$strCacheSalt<code> [private]</code></td>
+          <td class="memname">$strCachePath<code> [private]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-<p>Realtive or absolute path to a folder that will contain cache Always contains '/' at the end. </p>
+
+<p>Realtive or absolute path to a folder that will contain cache. </p>
+<dl class="note"><dt><b>Note:</b></dt><dd>Always contains '/' at the end. </dd></dl>
 
 </div>
 </div>

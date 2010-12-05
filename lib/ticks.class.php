@@ -4,9 +4,9 @@
 */
 class cTicks
 {
-	private $dtStart;	//! Start time set upon creation of this class
-	private $dtEnd;		//! End time set upon calling pf_getDurations
-	private $arrTicks;	//! Ticks array
+	private $dtStart;	//!< Start time set upon creation of this class
+	private $dtEnd;		//!< End time set upon calling pf_getDurations
+	private $arrTicks;	//!< Ticks array
 
 	public function __construct()
 	{

@@ -7,8 +7,8 @@ require_once './lib/arrayselect.class.php';
 */
 class cMainData
 {
-	private $db;	//! PDO object
-	private $dbSt;	//! Last PDO Statement
+	private $db;	//!< PDO object
+	private $dbSt;	//!< Last PDO Statement
 
 	/*!
 		@brief Construct
@@ -61,7 +61,7 @@ class cMainData
 		@param [in] $strDay The day to check
 		@param [in] $numDateTZ A project timezone at that date
 		
-		@if TODOP2_DONE
+		@if TODOP1_DONE
 			@todo when date in recentchanges -> get (rc_user AS) user_id, (rc_cur_id AS) page_id, (rc_new_len AS) start_len FROM recentchanges
 			@todo cache parts by date or rc_id/rev_id
 		@endif

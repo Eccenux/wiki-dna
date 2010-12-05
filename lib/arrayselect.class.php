@@ -1,11 +1,12 @@
 <?php
 /*!
-	@brief Array data selection class. Assoc array is addumed.
+	@brief Array data selection class. Assoc array is assumed.
 */
 class cArraySelector
 {
-	private $strSeparator;	//! The separator string to be used
-	private $strSelColumn;	//! The name of the column to be selected
+	private $strSeparator;	//!< The separator string to be used
+	private $strSelColumn;	//!< The name of the column to be selected
+	
 	public function __construct()
 	{
 	}
@@ -20,9 +21,13 @@ class cArraySelector
 		}
 		return $strPartialResult;
 	}
-
-	//! Call this to select values of a \a $strColumn from \a $arrData
-	//! which will be concatenated to a string separated by \a $strSeparator
+	
+	/*!
+		@brief Selects values from one column from an associative array
+	
+		Call this to select values of a \a $strColumn from \a $arrData
+		which will be concatenated to a string separated by \a $strSeparator
+	*/
 	public function pf_selectData(&$arrData, $strColumn, $strSeparator=",")
 	{
 		$this->strSeparator = $strSeparator;

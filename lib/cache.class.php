@@ -4,9 +4,9 @@
 */
 class cCache
 {
-	private $strCachePath;	//! Realtive or absolute path to a folder that will contain cache
-							//! Always contains '/' at the end.
-	private $strCacheSalt;	//! More or less random string to be appended to a file name
+	private $strCachePath;	//!< @brief Realtive or absolute path to a folder that will contain cache.
+							//!< @note Always contains '/' at the end.
+	private $strCacheSalt;	//!< More or less random string to be appended to a file name
 
 	/*!
 		@brief Constructor

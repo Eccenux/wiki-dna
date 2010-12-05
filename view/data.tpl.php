@@ -34,7 +34,7 @@
 					<a href="<?=$strPageBaseURL?>User:<?=$u['user_name']?>"><?=strtr($u['user_name'],'_',' ')?></a>
 					<span class="extra_links">(<a href="<?=$strPageBaseURL?>Special:Contributions/<?=$u['user_name']?>">wkład</a>)</span>
 				<? } else { ?>
-					&mdash;
+					<i>Anonimowe edycje</i>
 				<? } ?>
 			</td>
 			

@@ -11,7 +11,7 @@
 	@author
 		Copyright ©2010 Maciej Jaros (pl:User:Nux, en:User:Nux)
 	@version
-		0.1.3
+		0.1.4
 	
 	@section License
 	
@@ -42,7 +42,8 @@
 	@section TODO
 	
 	@subsection TODOP1 Most important
-		\li -
+		\li User name from revision.rev_user_text (at least for IP's) - maybe save IP number as user id with some prefix e.g. 178.36.5.80 -> X.178.36.5.80
+		\li section TODOP1_DONE
 		
 	@subsection TODOP2 Later
 	@subsubsection day-ended
@@ -52,17 +53,19 @@
 		else
 			if page data is not fresh enough (more then 30 minutes old?):
 				remove cache
-				re-calculate
+				re-calculate (preferably from recent changes)
 			else
 				serve from cache
 	\endcode
 	@subsubsection invalidate
 		invalidate user and page-extra data (helpfull when user or page name/title was changed)
+	@subsubsection other
+		section TODOP2_DONE
 		
 	@if TODOP2_DONE
 		@subsection TODOP3 Maybe someday...
-			Filter out pages that were redirects at the end of the day? '/^#(?:REDIRECT|PRZEKIERUJ|TAM|PATRZ)/i'
-			Not really needed due to 2kB limit
+			\li Dopisać zliczarkę http://pl.wikipedia.org/wiki/Wikipedia:Liczba_artyku%C5%82%C3%B3w_polskiej_Wikipedii
+			\li Filter out pages that were redirects at the end of the day? '/^#(?:REDIRECT|PRZEKIERUJ|TAM|PATRZ)/i'; Not really needed due to 2kB limit
 	@endif
 */
 ?>
