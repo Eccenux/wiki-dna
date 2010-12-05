@@ -48,7 +48,7 @@ class cCache
 	/*!
 		@brief Read data from cache
 		
-		@param [in] $strCacheName An id of data to be cached
+		@param [in] $strCacheName An id of data that is cached
 		@param [in] $strCacheKey Cache key (e.g. might be page_id for caching page data)
 		
 		@return $vCachedValued previously written with writeToCache
@@ -69,6 +69,24 @@ class cCache
 			return false;
 		}
 		return $vCachedValued;
+	}
+
+	/*!
+		@brief Check if data is cached
+		
+		@param [in] $strCacheName An id of data that is cached
+		@param [in] $strCacheKey Cache key (e.g. might be page_id for caching page data)
+		
+		@return boolean false if value is not available, true otherwise
+	*/
+	public function pf_isInCache($strCacheName, $strCacheKey)
+	{
+		$strFile = $this->pf_getCacheFileName($strCacheName, $strCacheKey);
+		if (file_exists($strFile))
+		{
+			return true;
+		}
+		return false;
 	}
 
 	/*!

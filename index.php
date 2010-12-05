@@ -35,7 +35,7 @@ else if (!preg_match('#^[0-9]{4}-[0-9]{2}-[0-9]{2}$#', $strDate2Check))
 {
 	$strDieMessage = 'Nieprawidłowy format daty. Prawidłowy format to: RRRR-MM-DD.';
 }
-else if (!preg_match('#^2010-([0-9]{2})-\1$#', $strDate2Check))
+else if (!preg_match('#^2010-([0-9]{2})-\1$#', $strDate2Check) && !$oCache->pf_isInCache($arrMyCnf['dna']['cache_page_basics_name'], $strDate2Check))
 {
 	$strDieMessage = 'Obecnie dopuszczalne są tylko daty z roku 2010 dotyczące DNA. Obliczanie innych dat na życzenie (skontaktuj się ze mną przez Wiki).';
 }

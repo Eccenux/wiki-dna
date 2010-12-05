@@ -42,6 +42,9 @@
 	// include other classes
 	require_once './lib/ticks.class.php';
 	require_once './lib/cache.class.php';
+	
+	// init cache object
+	$oCache = new cCache($arrMyCnf['dna']['cache_salt']);
 
 	// error handling
 	include './lib/fun_error.php';
