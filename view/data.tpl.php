@@ -28,7 +28,7 @@
 	-->
 	<tr>
 		<? foreach ($arrDNAUserData as &$u) { ?>
-			<? $intRowSpan = 1+count($u['pages'])?>
+			<? $intRowSpan = count($u['pages']) ?>
 			<td rowspan="<?=$intRowSpan?>">
 				<? if (!empty($u['user_name'])) { ?>
 					<a href="<?=$strPageBaseURL?>User:<?=$u['user_name']?>"><?=strtr($u['user_name'],'_',' ')?></a>
@@ -44,7 +44,7 @@
 			
 			<? $isFirst=true ?>
 			<? foreach ($u['pages'] as &$p) { ?>
-				<?=($isFirst?'<tr>':'')?>
+				<?=($isFirst?'':'<tr>')?>
 					<?$strClass=($p['is_ok']?'page_ok':'page_small')?>
 					
 					<td class="<?=$strClass?>">
