@@ -1,0 +1,91 @@
+/*
+body {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	background-color: #F5F5EE;
+	font-size: 10px; 
+}
+*/
+div.js_kalendarz_holder {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.clickable {
+	cursor: pointer;
+}
+/* zegarek przy kalendarzu */
+.time_holder {
+	text-align: right;
+	margin: 2px 3px 4px;
+}
+.time_holder input {
+	text-align: center;
+	border: 1px solid black;
+	background-color: silver;
+	color: #153;
+	font-weight:bold;
+	font-size: 14px;
+}
+
+/* kalendarz */
+div.js_kalendarz_holder {
+	text-align: center;
+	
+	width: 251px;
+	/* height: 242px; */
+	
+	border: 1px solid black;
+	
+	background-color: white;
+}
+div.js_kalendarz_holder table {
+	text-align: center;
+	vertical-align: top;
+	font-size: 10px;
+	
+	width: 245px;
+	/* height: 210px; */
+	
+	margin: 3px;
+	padding: 0px;
+	
+	background-color: black;
+}
+div.js_kalendarz_holder table th,div.js_kalendarz_holder table td {
+	vertical-align: middle;
+	
+	width: 35px;
+	height: 30px;
+	
+	margin: 0px;
+	padding: 0px;
+	
+	background-color: #DDD;
+}
+div.js_kalendarz_holder td {
+	cursor: pointer;
+}
+
+/* ulozenie elementow menu */
+div.js_kalendarz_holder caption {
+	font-size: 11px;
+	font-weight: bold;
+	text-align: center;
+	
+	margin: 3px;
+}
+span.kal_back_menu {
+	float: left;
+}
+span.kal_fwd_menu {
+	float: right;
+}
+span.kal_back_menu,span.kal_fwd_menu {
+	position: relative;
+	z-index: 1;
+	display: block;
+}
+div.js_kalendarz_holder caption span.clickable {
+	font-size: 120%;
+	line-height: 11px;
+	padding: 0px 2px;
+}

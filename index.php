@@ -17,6 +17,10 @@ set_time_limit(600);
 // Preformat some variables
 //
 $strDate2Check = empty($_GET['D']) ? '' : $_GET['D'];
+if (empty($strDate2Check) && !empty($_GET['Dy']) && isset($_GET['Dm'],$_GET['Dd']))
+{
+	$strDate2Check = $_GET['Dy'].'-'.$_GET['Dm'].'-'.$_GET['Dd'];
+}
 //$numDateTZ = $arrMyCnf['dna']['tz'];
 $numMinEndSize = $arrMyCnf['dna']['min_len'];
 $strPageTitle = 'DNA';
