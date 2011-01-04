@@ -27,6 +27,7 @@
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Data Fields</a> &#124;
 <a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a>  </div>
   <div class="headertitle">
@@ -47,6 +48,15 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Read data from cache.  <a href="#a53b1ce283e754875f2f137da6bcc81dd"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classc_cache.html#a6e3605bfe53826ce1ee14af86dce1084">pf_isInCache</a> ($strCacheName, $strCacheKey)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if data is cached.  <a href="#a6e3605bfe53826ce1ee14af86dce1084"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classc_cache.html#a8d92139dae24b2a8ceee3e5169c3e38c">pf_getCacheTime</a> ($strCacheName, $strCacheKey)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns storage time of cache entry.  <a href="#a8d92139dae24b2a8ceee3e5169c3e38c"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classc_cache.html#a73906c97711ca4339bdda428bcb9ccbf">pf_delFromCache</a> ($strCacheName, $strCacheKey)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove data from cache.  <a href="#a73906c97711ca4339bdda428bcb9ccbf"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="pub-attribs"></a>
+Data Fields</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2babb35aa3b3c4b1ff0ca8a15577a50f"></a><!-- doxytag: member="cCache::$isDisabled" ref="a2babb35aa3b3c4b1ff0ca8a15577a50f" args="" -->
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classc_cache.html#a2babb35aa3b3c4b1ff0ca8a15577a50f">$isDisabled</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">if true then writting to cache and reading from cache is disable <br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classc_cache.html#ac5f55222f55691b970ff862650c31a2f">pf_getCacheFileName</a> ($strCacheName, $strCacheKey)</td></tr>
@@ -106,6 +116,43 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a73906c97711ca4339bdda428bcb9ccbf"></a><!-- doxytag: member="cCache::pf_delFromCache" ref="a73906c97711ca4339bdda428bcb9ccbf" args="($strCacheName, $strCacheKey)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">pf_delFromCache </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"> <em>strCacheName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"> <em>strCacheKey</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Remove data from cache. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">$strCacheName</td><td>An id of data that is cached </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">$strCacheKey</td><td>Cache key (e.g. might be page_id for caching page data)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>boolean false if operation was not successful, true otherwise </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="ac5f55222f55691b970ff862650c31a2f"></a><!-- doxytag: member="cCache::pf_getCacheFileName" ref="ac5f55222f55691b970ff862650c31a2f" args="($strCacheName, $strCacheKey)" -->
 <div class="memitem">
 <div class="memproto">
@@ -141,6 +188,43 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The name of the file with it's path</dd></dl>
 <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classc_cache.html#a57faa83dd27a102ac93eca151602e86a" title="Write data to cache.">cCache::pf_writeToCache()</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a8d92139dae24b2a8ceee3e5169c3e38c"></a><!-- doxytag: member="cCache::pf_getCacheTime" ref="a8d92139dae24b2a8ceee3e5169c3e38c" args="($strCacheName, $strCacheKey)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">pf_getCacheTime </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"> <em>strCacheName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"> <em>strCacheKey</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Returns storage time of cache entry. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">$strCacheName</td><td>An id of data that is cached </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">$strCacheKey</td><td>Cache key (e.g. might be page_id for caching page data)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>storage time of the entry </dd></dl>
 
 </div>
 </div>

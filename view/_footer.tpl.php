@@ -4,7 +4,7 @@
 	<p>Copyright &copy;2010 Maciej Jaros (pl:User:Nux, en:User:Nux)</p>
 	<? if (!empty($arrTicks)) { ?>
 		<div id="ticks">
-			Czasy wykonania:
+			Czasy wykonania [s]:
 			<ul>
 				<? foreach ($arrTicks as $strTickName=>$intDurtation) { ?>
 					<li><?=sprintf("<em>%s</em> %.4f", $strTickName, $intDurtation)?></li>

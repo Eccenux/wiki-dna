@@ -23,10 +23,19 @@ $strPageTitle = 'DNA';
 $strDieMessage = '';
 $strTplFile = 'data';
 $strPageBaseURL = $arrSrcDb['page_base_url'];
+$isAccuracyNeeded=false;
+// use "secret" word to bypass some checks and optimizations...
+$strSecretStr = md5($arrMyCnf['dna']['cache_salt']);
+$strSecretUserStr = empty($_GET['override_sec']) ? '' : $_GET['override_sec'];
+if ($strSecretUserStr==$strSecretStr)
+{
+	$isAccuracyNeeded = true;
+}
 
 //
 // Check date format, get timezone
 //
+$numDateTZ = date("Z",strtotime($strDate2Check))/3600;
 if (empty($strDate2Check))
 {
 	$strTplFile = 'index';
@@ -35,27 +44,64 @@ else if (!preg_match('#^[0-9]{4}-[0-9]{2}-[0-9]{2}$#', $strDate2Check))
 {
 	$strDieMessage = 'Nieprawidłowy format daty. Prawidłowy format to: RRRR-MM-DD.';
 }
-else if (!preg_match('#^2010-([0-9]{2})-\1$#', $strDate2Check) && !$oCache->pf_isInCache($arrMyCnf['dna']['cache_page_basics_name'], $strDate2Check))
+else if ($strSecretUserStr!=$strSecretStr	// not a secret bypass
+	&& !$oCache->pf_isInCache($arrMyCnf['dna']['cache_page_basics_name'], $strDate2Check)	// not already cached
+)
 {
-	$strDieMessage = 'Obecnie dopuszczalne są tylko daty z roku 2010 dotyczące DNA. Obliczanie innych dat na życzenie (skontaktuj się ze mną przez Wiki).';
-}
-else
-{
-	$numDateTZ = date("Z",strtotime($strDate2Check))/3600;
+	if (!$oData->pf_isDateInRC($strDate2Check, $numDateTZ))	// not in RC table?
+	{
+		$strDieMessage = 'Data jest zbyt stara lub za bardzo w przyszłości ;-) (poza tabelą ostatnich zmian). Stare daty mogą być obliczane na życzenie (<a href="http://pl.wikipedia.org/wiki/User_talk:Nux">skontaktuj się ze mną przez Wiki</a>).';
+	}
 }
 
 //
-// Deny request for calculating unfinished date
+// Clearing (refreshing) cache
 //
+$isCacheClear = false;
+// secret cache clear
+if ($strSecretUserStr==$strSecretStr && !empty($_GET['clear_cache']))
+{
+	$isCacheClear = true;
+}
+
+// check if cache need to be cleared
+if (!$isCacheClear)
+{
+	$dtCache = $oCache->pf_getCacheTime($arrMyCnf['dna']['cache_page_basics_name'], $strDate2Check);
+	$dtToBeChecked = strtotime("$strDate2Check -$numDateTZ hours");
+	$dtDiff = abs($dtCache - $dtToBeChecked);
+	$dtDiffNow = abs($dtCache - time());
+	if ($dtDiffNow>60*5 && $dtDiff<=24*3600)	// current day cached for 5 min
+	{
+		$isCacheClear = true;
+	}
+}
+
+// clear cache
+if ($isCacheClear)
+{
+	$oCache->pf_delFromCache($arrMyCnf['dna']['cache_page_basics_name'], $strDate2Check);
+	$oCache->pf_delFromCache($arrMyCnf['dna']['cache_last_len_name'], $strDate2Check);
+	$oCache->pf_delFromCache($arrMyCnf['dna']['cache_users_name'], $strDate2Check);
+	$oCache->pf_delFromCache($arrMyCnf['dna']['cache_page_extra_name'], $strDate2Check);
+}
+
+//
+// Deny requests for calculating unfinished date
+//
+/*
 if (!empty($strDate2Check) && empty($strDieMessage))
 {
 	$dtEnd = strtotime("{$strDate2Check} -$numDateTZ hours")+24*3600;
 	$dtNow = time();
 	if ($dtNow<=$dtEnd)
 	{
-		$strDieMessage = 'Skrypt umożliwia obliczanie danych tylko dla dat z przeszłości.';
+		//$strDieMessage = 'Skrypt umożliwia obliczanie danych tylko dla dat z przeszłości.';
+		// disable cache
+		$oCache->isDisabled = true;
 	}
 }
+*/
 
 //
 // Get \a $arrDNAUserData and \a $oTicks

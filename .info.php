@@ -9,9 +9,9 @@
 	http://pl.wikipedia.org/wiki/Wikipedia:Dzie%C5%84_Nowego_Artyku%C5%82u/statystyki
 	
 	@author
-		Copyright ©2010 Maciej Jaros (pl:User:Nux, en:User:Nux)
+		Copyright ©2010-2011 Maciej Jaros (pl:User:Nux, en:User:Nux)
 	@version
-		0.1.6
+		1.0.0
 	
 	@section License
 	
@@ -41,31 +41,11 @@
 	
 	@section TODO
 	
-	@subsection TODOP1 Most important
-		\li User name from revision.rev_user_text (at least for IP's) - maybe save IP number as user id with some prefix e.g. 178.36.5.80 -> X.178.36.5.80
-		\li section TODOP1_DONE
-		
-	@subsection TODOP2 Later
-	@subsubsection day-ended
-	\code
-		if day eneded:
-			do as we do (serve most from cache)
-		else
-			if page data is not fresh enough (more then 30 minutes old?):
-				remove cache
-				re-calculate (preferably from recent changes)
-			else
-				serve from cache
-	\endcode
-	@subsubsection invalidate
+	@subsection invalidate
 		invalidate user and page-extra data (helpfull when user or page name/title was changed)
-	@subsubsection other
-		section TODOP2_DONE
-		
-	@if TODOP2_DONE
-		@subsection TODOP3 Maybe someday...
-			\li Dopisać zliczarkę http://pl.wikipedia.org/wiki/Wikipedia:Liczba_artyku%C5%82%C3%B3w_polskiej_Wikipedii
-			\li Filter out pages that were redirects at the end of the day? '/^#(?:REDIRECT|PRZEKIERUJ|TAM|PATRZ)/i'; Not really needed due to 2kB limit
-	@endif
+
+	@subsection TODOP3 Maybe someday...
+		- Dopisać zliczarkę http://pl.wikipedia.org/wiki/Wikipedia:Liczba_artyku%C5%82%C3%B3w_polskiej_Wikipedii
+		- Filter out pages that were redirects at the end of the day? '/^#(?:REDIRECT|PRZEKIERUJ|TAM|PATRZ)/i'; Not really needed due to 2kB limit
 */
 ?>

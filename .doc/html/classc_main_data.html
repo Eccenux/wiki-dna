@@ -41,8 +41,10 @@
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classc_main_data.html#a32132616ef24032e4e7b85f29e7b969e">__construct</a> ($strHost, $strDbName, $strUser, $strPass)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct.  <a href="#a32132616ef24032e4e7b85f29e7b969e"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classc_main_data.html#a76130350375427fff9c14a161b2b36f8">pf_getPagesBasics</a> ($strDay, $numDateTZ)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get basic page info for DNA.  <a href="#a76130350375427fff9c14a161b2b36f8"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classc_main_data.html#ae894b44305a308a004e2d9b243e4cf31">pf_isDateInRC</a> ($strDay, $numDateTZ)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if given date is in Recent Changes.  <a href="#ae894b44305a308a004e2d9b243e4cf31"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classc_main_data.html#a3c0f3599abdabe6bda9bb73b58bea91f">pf_getPagesBasics</a> ($strDay, $numDateTZ, $isAccuracyNeeded=false)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get basic page info for DNA.  <a href="#a3c0f3599abdabe6bda9bb73b58bea91f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classc_main_data.html#a69f4f4f0cfa46033c0d66cb7f360e300">pf_getPageLastLens</a> (&amp;$arrPages, $strDay, $numDateTZ)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get length of last revision for DNA.  <a href="#a69f4f4f0cfa46033c0d66cb7f360e300"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classc_main_data.html#a967bc74706f3f05a28fe9ca98ed61ad1">pf_getUserInfo</a> (&amp;$arrPages)</td></tr>
@@ -241,7 +243,7 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a76130350375427fff9c14a161b2b36f8"></a><!-- doxytag: member="cMainData::pf_getPagesBasics" ref="a76130350375427fff9c14a161b2b36f8" args="($strDay, $numDateTZ)" -->
+<a class="anchor" id="a3c0f3599abdabe6bda9bb73b58bea91f"></a><!-- doxytag: member="cMainData::pf_getPagesBasics" ref="a3c0f3599abdabe6bda9bb73b58bea91f" args="($strDay, $numDateTZ, $isAccuracyNeeded=false)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -255,7 +257,13 @@ Private Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">$&#160;</td>
-          <td class="paramname"> <em>numDateTZ</em>&#160;</td>
+          <td class="paramname"> <em>numDateTZ</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"> <em>isAccuracyNeeded</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -271,7 +279,8 @@ Private Attributes</h2></td></tr>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">$strDay</td><td>The day to check </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">$numDateTZ</td><td>A project timezone at that date</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">$numDateTZ</td><td>A project timezone at that date </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">$isAccuracyNeeded</td><td>true if accuracy is needed (and RC must not be used)</td></tr>
   </table>
   </dd>
 </dl>
@@ -330,6 +339,48 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>an array with key=&gt;val set to: user_id=&gt;user_name </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ae894b44305a308a004e2d9b243e4cf31"></a><!-- doxytag: member="cMainData::pf_isDateInRC" ref="ae894b44305a308a004e2d9b243e4cf31" args="($strDay, $numDateTZ)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">pf_isDateInRC </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"> <em>strDay</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"> <em>numDateTZ</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Check if given date is in Recent Changes. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">$strDay</td><td>The day for the select </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">$numDateTZ</td><td>A project timezone at that date</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd><ul>
+<li>1 if start time is within RC table</li>
+<li>2 if end time is within RC table</li>
+<li>0 otherwise </li>
+</ul>
+</dd></dl>
 
 </div>
 </div>

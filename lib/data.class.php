@@ -52,6 +52,52 @@ class cMainData
 		
 		return $vStamps;
 	}
+
+	/*!
+		@brief Check if given date is in Recent Changes
+		
+		@param [in] $strDay The day for the select
+		@param [in] $numDateTZ A project timezone at that date
+		
+		@return
+			- 1 if start time is within RC table
+			- 2 if end time is within RC table
+			- 0 otherwise
+	*/
+	public function pf_isDateInRC($strDay, $numDateTZ)
+	{
+		$dtStart = strtotime("$strDay -$numDateTZ hours");
+		$dtEnd = $dtStart + 24 * 60 * 60;
+		
+		// get min, max time
+		$strSQL = "SELECT min(rc_timestamp) as rc_min, max(rc_timestamp) as rc_max
+			FROM `recentchanges`
+		";
+		$vTimes = $this->pf_fetchAllSQL($strSQL);
+		$vTimes['rc_min'] = $vTimes[0]['rc_min'];
+		$vTimes['rc_max'] = $vTimes[0]['rc_max'];
+		unset($vTimes[0]);
+		
+		// checks
+		$numRet = 0;
+		$dtStart = date('YmdHis', $dtStart);
+		$dtEnd = date('YmdHis', $dtEnd);
+		if ($dtStart > $vTimes['rc_min'] && $dtStart < $vTimes['rc_max'])
+		{
+			$numRet++;
+			if ($dtEnd > $vTimes['rc_min'] && $dtEnd < $vTimes['rc_max'])
+			{
+				$numRet++;
+			}
+		}
+		
+		/*
+		echo "\$dtStart:$dtStart, \$dtEnd:$dtEnd";
+		echo "\$vTimes['rc_min']:{$vTimes['rc_min']}, \$vTimes['rc_max']:{$vTimes['rc_max']}";
+		*/
+		
+		return $numRet;
+	}
 	
 	/*!
 		@brief Get basic page info for DNA
@@ -60,53 +106,85 @@ class cMainData
 		
 		@param [in] $strDay The day to check
 		@param [in] $numDateTZ A project timezone at that date
-		
-		@if TODOP1_DONE
-			@todo when date in recentchanges -> get (rc_user AS) user_id, (rc_cur_id AS) page_id, (rc_new_len AS) start_len FROM recentchanges
-			@todo cache parts by date or rc_id/rev_id
-		@endif
+		@param [in] $isAccuracyNeeded true if accuracy is needed (and RC must not be used)
 		
 		@return $arrPages an array of pages containing: user_id, page_id, start_len
 	*/
-	public function pf_getPagesBasics($strDay, $numDateTZ)//, $numMinStartSize)
+	public function pf_getPagesBasics($strDay, $numDateTZ, $isAccuracyNeeded=false)//, $numMinStartSize)
 	{
+		// check if in RC
+		if ($isAccuracyNeeded)
+		{
+			$isInRC = 0;	//	data taken from RC are less accurate
+		}
+		else
+		{
+			$isInRC = $this->pf_isDateInRC($strDay, $numDateTZ);
+		}
+		
 		// gen dt stamps SQL 
 		$vStamps = $this->pf_genDTStampsSQL($strDay, $numDateTZ);
 		
 		// get ids of pages edited on that date
-		$strSQL = "SELECT rev_page FROM revision
-			WHERE
-			".str_replace('{column}', 'rev_timestamp', $vStamps)."
-			GROUP BY rev_page
-		";
-		$vPages = $this->pf_fetchAllSQL($strSQL, PDO::FETCH_COLUMN);
-		$vPages = implode(",", $vPages);
-		if (empty($vPages))
+		if (!$isInRC)
 		{
-			return array();
+			$strSQL = "SELECT rev_page FROM revision
+				WHERE
+				".str_replace('{column}', 'rev_timestamp', $vStamps)."
+				GROUP BY rev_page
+			";
+			$vPages = $this->pf_fetchAllSQL($strSQL, PDO::FETCH_COLUMN);
+			$vPages = implode(",", $vPages);
+			if (empty($vPages))
+			{
+				return array();
+			}
 		}
 		
 		// get ids of first rev of those pages
-		$strSQL = "SELECT MIN(rev_id) as first_rev_id
-			FROM revision
-			WHERE rev_page IN ($vPages)
-			GROUP BY rev_page
-		";
-		$vRevs = $this->pf_fetchAllSQL($strSQL, PDO::FETCH_COLUMN);
-		$vRevs = implode(",", $vRevs);
-		if (empty($vRevs))
+		if (!$isInRC)
 		{
-			return array();
+			$strSQL = "SELECT MIN(rev_id) as first_rev_id
+				FROM revision
+				WHERE rev_page IN ($vPages)
+				GROUP BY rev_page
+			";
+			$vRevs = $this->pf_fetchAllSQL($strSQL, PDO::FETCH_COLUMN);
+			$vRevs = implode(",", $vRevs);
+			if (empty($vRevs))
+			{
+				return array();
+			}
 		}
 		
 		// finally get data of pages created on that date
-		$strSQL = "SELECT rev_user AS user_id, rev_page AS page_id, rev_len AS start_len
-			FROM revision
-			WHERE rev_id IN ($vRevs)
-				AND (".str_replace('{column}', 'rev_timestamp', $vStamps).")
-			ORDER BY user_id
-		";
+		if (!$isInRC)
+		{
+			$strSQL = "SELECT rev_user AS user_id, rev_page AS page_id, rev_len AS start_len
+				FROM revision
+				WHERE rc_cur_id>0 AND rc_this_oldid >0 AND
+					rev_id IN ($vRevs)
+					AND (".str_replace('{column}', 'rev_timestamp', $vStamps).")
+				ORDER BY user_id
+			";
+		}
+		else
+		{
+			$strSQL = "SELECT rc_user AS user_id, rc_cur_id AS page_id, rc_new_len AS start_len
+				FROM recentchanges
+				WHERE rc_type=1
+					AND (".str_replace('{column}', 'rc_timestamp', $vStamps).")
+				ORDER BY user_id
+			";
+		}
 		$vPages = $this->pf_fetchAllSQL($strSQL);
+		/*
+			echo "\n"; var_export($strSQL);
+			echo "\n"; var_export($vPages);
+		*/
+		
+		//header('Content-Type: text/plain; charset=UTF-8');
+		//exit;
 		
 		return $vPages;
 	}

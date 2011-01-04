@@ -7,6 +7,7 @@ class cCache
 	private $strCachePath;	//!< @brief Realtive or absolute path to a folder that will contain cache.
 							//!< @note Always contains '/' at the end.
 	private $strCacheSalt;	//!< More or less random string to be appended to a file name
+	public $isDisabled;	//!< if true then writting to cache and reading from cache is disable
 
 	/*!
 		@brief Constructor
@@ -21,6 +22,7 @@ class cCache
 	{
 		$this->strCachePath = rtrim ($strCachePath, '/').'/';
 		$this->strCacheSalt = $strCacheSalt;
+		$this->isDisabled = false;
 	}
 
 	/*!
@@ -36,6 +38,11 @@ class cCache
 	*/
 	public function pf_writeToCache($strCacheName, $strCacheKey, $vCacheMe)
 	{
+		if ($this->isDisabled)
+		{
+			return 1;
+		}
+		
 		$strFile = $this->pf_getCacheFileName($strCacheName, $strCacheKey);
 		if (!file_put_contents($strFile ,"<?php\n\$vCachedValued = \n".var_export ($vCacheMe, true).";\n?>"))
 		{
@@ -58,6 +65,11 @@ class cCache
 	*/
 	public function pf_readFromCache($strCacheName, $strCacheKey)
 	{
+		if ($this->isDisabled)
+		{
+			return false;
+		}
+
 		$strFile = $this->pf_getCacheFileName($strCacheName, $strCacheKey);
 		if (file_exists($strFile))
 		{
@@ -81,12 +93,58 @@ class cCache
 	*/
 	public function pf_isInCache($strCacheName, $strCacheKey)
 	{
+		if ($this->isDisabled)
+		{
+			return false;
+		}
+
 		$strFile = $this->pf_getCacheFileName($strCacheName, $strCacheKey);
 		if (file_exists($strFile))
 		{
 			return true;
 		}
 		return false;
+	}
+
+	/*!
+		@brief Returns storage time of cache entry
+		
+		@param [in] $strCacheName An id of data that is cached
+		@param [in] $strCacheKey Cache key (e.g. might be page_id for caching page data)
+		
+		@return storage time of the entry
+	*/
+	public function pf_getCacheTime($strCacheName, $strCacheKey)
+	{
+		if ($this->isDisabled)
+		{
+			return false;
+		}
+
+		$strFile = $this->pf_getCacheFileName($strCacheName, $strCacheKey);
+		if (file_exists($strFile))
+		{
+			return filemtime($strFile);
+		}
+		return false;
+	}
+
+	/*!
+		@brief Remove data from cache
+		
+		@param [in] $strCacheName An id of data that is cached
+		@param [in] $strCacheKey Cache key (e.g. might be page_id for caching page data)
+		
+		@return boolean false if operation was not successful, true otherwise
+	*/
+	public function pf_delFromCache($strCacheName, $strCacheKey)
+	{
+		$strFile = $this->pf_getCacheFileName($strCacheName, $strCacheKey);
+		if (file_exists($strFile))
+		{
+			return @unlink($strFile);
+		}
+		return true;
 	}
 
 	/*!

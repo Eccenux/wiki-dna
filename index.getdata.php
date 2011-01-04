@@ -7,6 +7,7 @@
 	@li \a $strDate2Check Date to be check (str 'YYYY-mm-dd')
 	@li \a $numDateTZ Time zone (int in hours from GMT)
 	@li \a $numMinEndSize Min length of articles at the end of the day that is OK (int in bytes)
+	@li \a $isAccuracyNeeded If true RC must not be used.
 
 	@par Return data
 	@li \a $oTicks Ticks object that gathers some info on times
@@ -56,7 +57,7 @@ $arrPages = $oCache->pf_readFromCache($arrMyCnf['dna']['cache_page_basics_name']
 if ($arrPages===false)
 {
 	$oTicks->pf_insTick('basic page data');
-	$arrPages = $oData->pf_getPagesBasics($strDate2Check, $numDateTZ);
+	$arrPages = $oData->pf_getPagesBasics($strDate2Check, $numDateTZ, $isAccuracyNeeded);
 	$oTicks->pf_endTick('basic page data');
 
 	// only to be refreshed upon bug
