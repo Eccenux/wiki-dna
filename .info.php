@@ -11,7 +11,7 @@
 	@author
 		Copyright ©2010-2011 Maciej Jaros (pl:User:Nux, en:User:Nux)
 	@version
-		1.1.0
+		1.1.2
 	
 	@section License
 	

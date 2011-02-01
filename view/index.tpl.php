@@ -44,3 +44,7 @@
 	</div> 
 	<input type="submit" name="submit" />
 </form>
+
+<p>Dostępne są statystyki dla dowolnych dat <a href="http://pl.wikipedia.org/wiki/WP:DNA">DNA</a> (01-01, 02-02...) począwszy od 2010-01-01 oraz wszystkie w zakresie ostatnich zmian (zwykle około miesiąca wstecz).</p>
+
+<p>Jeśli ktoś chce inne statystyki, to proszę o <a href="http://pl.wikipedia.org/wiki/User_talk:Nux">kontakt ze mną przez Wiki</a>.</p>

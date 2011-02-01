@@ -1,5 +1,6 @@
 <table>
 	<tr>
+		<th rowspan="2">l.p.</th>
 		<th rowspan="2">Osoba</th>
 		<th colspan="3">Razem</th>
 		<th colspan="3">Strony</th>
@@ -27,8 +28,11 @@
 	</tr>
 	-->
 	<tr>
+		<? $intLP = 0; ?>
 		<? foreach ($arrDNAUserData as &$u) { ?>
 			<? $intRowSpan = count($u['pages']) ?>
+			<? $intLP++; ?>
+			<td rowspan="<?=$intRowSpan?>"><?=$intLP?></td>
 			<td rowspan="<?=$intRowSpan?>">
 				<? if (!empty($u['user_name'])) { ?>
 					<a href="<?=$strPageBaseURL?>User:<?=$u['user_name']?>"><?=strtr($u['user_name'],'_',' ')?></a>

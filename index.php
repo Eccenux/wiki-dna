@@ -4,7 +4,7 @@
 	@brief Main file
 	
 	@see \a .info.php (Main page) for details about the license and description of this project.
-	@see \a index.getdata.php for details about the license and description of this project.
+	@see \a index.getdata.php Main script controling the flow of gathering data
 */
 define('NO_HACKING', 1);
 //header("Content-type: text/plain; charset=utf-8");
