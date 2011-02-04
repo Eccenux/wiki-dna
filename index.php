@@ -72,7 +72,7 @@ if ($strSecretUserStr==$strSecretStr && !empty($_GET['clear_cache']))
 if (!$isCacheClear)
 {
 	$dtCache = $oCache->pf_getCacheTime($arrMyCnf['dna']['cache_page_basics_name'], $strDate2Check);
-	$dtToBeChecked = strtotime("$strDate2Check -$numDateTZ hours");
+	$dtToBeChecked = strtotime($strDate2Check);	// no need to change TZ - both SHOULD be in the same TZ
 	$dtDiff = abs($dtCache - $dtToBeChecked);
 	$dtDiffNow = abs($dtCache - time());
 	if ($dtDiffNow>60*5 && $dtDiff<=24*3600)	// current day cached for 5 min
