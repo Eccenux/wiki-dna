@@ -162,7 +162,7 @@ class cMainData
 		{
 			$strSQL = "SELECT rev_user AS user_id, rev_page AS page_id, rev_len AS start_len
 				FROM revision
-				WHERE rc_cur_id>0 AND rc_this_oldid >0 AND
+				WHERE
 					rev_id IN ($vRevs)
 					AND (".str_replace('{column}', 'rev_timestamp', $vStamps).")
 				ORDER BY user_id

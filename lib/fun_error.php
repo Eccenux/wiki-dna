@@ -40,7 +40,7 @@ define ('HANDLER_ERR_LOG', './.err.log');	// scieżka
 define ('MAX_LOG_SIZE', 52428800);			// maksymalna wielkosc (tu 50MB)
 //
 // Tryb debugowania
-define ('DEBUG_MODE', 1);	// 1 - ON, 0 - OFF
+define ('DEBUG_MODE', 0);	// 1 - ON, 0 - OFF
 // Tryb pomocniczy ("chowa" komunikaty)
 define ('SILENT_DEBUG_MODE', 1);	// 1 - ON, 0 - OFF
 //
@@ -190,9 +190,11 @@ function myErrorHandler($errno, $errmsg, $filename, $linenum)
 	global $debug_msgtext;
 
 	$done = false;
+
 	//
 	// Special errors handling
 	//
+	/*
 	if ($errno == E_USER_ERROR ||
 		$errno == E_USER_WARNING ||
 		$errno == E_USER_NOTICE)
@@ -219,14 +221,28 @@ function myErrorHandler($errno, $errmsg, $filename, $linenum)
 			}
 		}
 	}
+	*/
 	//
 	// Standard error handling
 	//
-	if (DEBUG_MODE && !$done)
+	if (!$done)
 	{
 		$new_err_msg = myErrorHandler_std($errno, win2utf8($errmsg), $filename, $linenum);
-
-		$debug_msgtext .= $new_err_msg;
+		if (DEBUG_MODE)
+		{
+			$debug_msgtext .= $new_err_msg;
+		}
+	}
+	if ($errno == E_USER_ERROR)
+	{
+		if (DEBUG_MODE)
+		{
+			die ("Fatal error:<br />\n{$new_err_msg}");
+		}
+		else
+		{
+			die ('Fatal error! See log for more info.');
+		}
 	}
 }
 
@@ -242,7 +258,7 @@ function myErrorHandler($errno, $errmsg, $filename, $linenum)
 		$errno - num. typu błędu (E_USER_ERROR | E_USER_WARNING | E_USER_NOTICE)
 		$err_file_name - nazwa pliku, w którym wystapił bład
 		$err_line_num - numer linii pliku, w miejscu wystapienia błędu
-\* --------------------------------------------------------- */
+\* --------------------------------------------------------- *
 function myErrorHandler_sql ($sql, $err_info, $errno, $err_file_name, $err_line_num)
 {
 	global $db;
@@ -360,7 +376,13 @@ function myErrorHandler_std ($errno, $errmsg, $err_file_name, $err_line_num)
 	/**/
 	if (@filesize(HANDLER_ERR_LOG) < MAX_LOG_SIZE)
 	{
-		$log_debug_msgtext = "\n----------------------------------------------------\n ".date("Y-m-d H:i:s (T)")."\n {$errortype[$errno]}($errno): $errmsg\n In [$err_file_name] at line ($err_line_num) \n----------------------------------------------------";
+		$log_debug_msgtext = ""
+			."\n----------------------------------------------------"
+			."\n ".date("Y-m-d H:i:s (T)")
+			."\n {$errortype[$errno]}($errno): $errmsg"
+			."\n In [$err_file_name] at line ($err_line_num)"
+			."\n----------------------------------------------------"
+		;
 		error_log ($log_debug_msgtext, 3, HANDLER_ERR_LOG);
 	}
 	/**/
