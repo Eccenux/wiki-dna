@@ -4,7 +4,8 @@
 <File path="lib\data.class.php"></File>
 <File path="lib\ticks.class.php"></File>
 <File path="lib\cache.class.php"></File>
-<File path="lib\fun_error.php"></File></Folder>
+<File path="lib\fun_error.php"></File>
+<File path="lib\calend_t.js"></File></Folder>
 <Folder name="view">
 <File path="view\_footer.tpl.php"></File>
 <File path="view\_header.tpl.php"></File>
