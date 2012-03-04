@@ -31,6 +31,7 @@ $isAccuracyNeeded=false;
 // use "secret" word to bypass some checks and optimizations...
 $strSecretStr = md5($arrMyCnf['dna']['cache_salt']);
 $strSecretUserStr = empty($_GET['override_sec']) ? '' : $_GET['override_sec'];
+//$strSecretUserStr=$strSecretStr;
 if ($strSecretUserStr==$strSecretStr)
 {
 	$isAccuracyNeeded = true;
@@ -40,6 +41,7 @@ if ($strSecretUserStr==$strSecretStr)
 // Check date format, get timezone
 //
 $numDateTZ = date("Z",strtotime($strDate2Check))/3600;
+$arrLocalMaxMinRC = $oData->pf_getLocalMaxMinRC($numDateTZ);
 if (empty($strDate2Check))
 {
 	$strTplFile = 'index';

@@ -1,1 +1,22 @@
-<Project name=".dna"><Folder name="lib"><File path="lib\arrayselect.class.php"></File><File path="lib\data.class.php"></File><File path="lib\ticks.class.php"></File><File path="lib\cache.class.php"></File><File path="lib\fun_error.php"></File></Folder><Folder name="view"><File path="view\_footer.tpl.php"></File><File path="view\_header.tpl.php"></File><File path="view\main.css"></File><File path="view\data.tpl.php"></File><File path="view\index.tpl.php"></File></Folder><File path=".my.cnf"></File><File path="_test.php"></File><File path="_top.php"></File><File path="index.php"></File><File path="_test2.php"></File><File path=".info.php"></File><File path="index.getdata.php"></File></Project>
+<Project name=".dna">
+<Folder name="lib">
+<File path="lib\arrayselect.class.php"></File>
+<File path="lib\data.class.php"></File>
+<File path="lib\ticks.class.php"></File>
+<File path="lib\cache.class.php"></File>
+<File path="lib\fun_error.php"></File></Folder>
+<Folder name="view">
+<File path="view\_footer.tpl.php"></File>
+<File path="view\_header.tpl.php"></File>
+<File path="view\main.css"></File>
+<File path="view\data.tpl.php"></File>
+<File path="view\index.tpl.php"></File>
+<File path="view\calend_t.css"></File></Folder>
+<File path="_test.php"></File>
+<File path="_top.php"></File>
+<File path="index.php"></File>
+<File path="_test2.php"></File>
+<File path=".info.php"></File>
+<File path="index.getdata.php"></File>
+<File path=".my.script.cnf"></File>
+<File path="cached_dates.js.php"></File></Project>

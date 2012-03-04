@@ -54,6 +54,50 @@ class cMainData
 	}
 
 	/*!
+		@brief Gets max/min dates in Recent Changes
+		
+		@note The times are GMT.
+		
+		@return array(
+			'rc_min' => wikiTimeStamp,
+			'rc_max' => wikiTimeStamp,
+		)
+	*/
+	private function pf_getMaxMinRC()
+	{
+		// get min, max time
+		$strSQL = "SELECT min(rc_timestamp) as rc_min, max(rc_timestamp) as rc_max
+			FROM `recentchanges`
+		";
+		$vTimes = $this->pf_fetchAllSQL($strSQL);
+		$vTimes['rc_min'] = $vTimes[0]['rc_min'];
+		$vTimes['rc_max'] = $vTimes[0]['rc_max'];
+		unset($vTimes[0]);
+		
+		return $vTimes;
+	}
+
+	/*!
+		@brief Gets local max/min dates in Recent Changes
+		
+		@param [in] $numDateTZ A project's current timezone
+		
+		@return array(
+			'min' => almost ISO date (no 'T'),
+			'max' => almost ISO date (no 'T'),
+		)
+	*/
+	public function pf_getLocalMaxMinRC($numDateTZ)
+	{
+		$vTimes = $this->pf_getMaxMinRC();
+		
+		return array(
+			'min' => date('Y-m-d H:i:s', strtotime($vTimes['rc_min']." +$numDateTZ hours")),
+			'max' => date('Y-m-d H:i:s', strtotime($vTimes['rc_max']." +$numDateTZ hours")),
+		);
+	}
+	
+	/*!
 		@brief Check if given date is in Recent Changes
 		
 		@param [in] $strDay The day for the select
@@ -70,13 +114,7 @@ class cMainData
 		$dtEnd = $dtStart + 24 * 60 * 60;
 		
 		// get min, max time
-		$strSQL = "SELECT min(rc_timestamp) as rc_min, max(rc_timestamp) as rc_max
-			FROM `recentchanges`
-		";
-		$vTimes = $this->pf_fetchAllSQL($strSQL);
-		$vTimes['rc_min'] = $vTimes[0]['rc_min'];
-		$vTimes['rc_max'] = $vTimes[0]['rc_max'];
-		unset($vTimes[0]);
+		$vTimes = $this->pf_getMaxMinRC();
 		
 		// checks
 		$numRet = 0;

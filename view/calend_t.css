@@ -65,6 +65,12 @@ div.js_kalendarz_holder td {
 	cursor: pointer;
 }
 
+div.js_kalendarz_holder table td.available
+{
+	background-color:#8ddbaa;
+	font-weight: bold;
+}
+
 /* ulozenie elementow menu */
 div.js_kalendarz_holder caption {
 	font-size: 11px;

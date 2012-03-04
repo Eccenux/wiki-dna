@@ -41,6 +41,8 @@
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classc_main_data.html#a32132616ef24032e4e7b85f29e7b969e">__construct</a> ($strHost, $strDbName, $strUser, $strPass)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct.  <a href="#a32132616ef24032e4e7b85f29e7b969e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classc_main_data.html#a947de261e970590ffdd86e6c4e6d8271">pf_getLocalMaxMinRC</a> ($numDateTZ)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets local max/min dates in Recent Changes.  <a href="#a947de261e970590ffdd86e6c4e6d8271"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classc_main_data.html#ae894b44305a308a004e2d9b243e4cf31">pf_isDateInRC</a> ($strDay, $numDateTZ)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if given date is in Recent Changes.  <a href="#ae894b44305a308a004e2d9b243e4cf31"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classc_main_data.html#a3c0f3599abdabe6bda9bb73b58bea91f">pf_getPagesBasics</a> ($strDay, $numDateTZ, $isAccuracyNeeded=false)</td></tr>
@@ -55,6 +57,8 @@ Public Member Functions</h2></td></tr>
 Private Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classc_main_data.html#a1f699bf6796a8df18c8560d1395258bc">pf_genDTStampsSQL</a> ($strDay, $numDateTZ)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate date-time stamps SQL.  <a href="#a1f699bf6796a8df18c8560d1395258bc"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classc_main_data.html#a1ef9cb10491e8e4b1ee95d318536ca7b">pf_getMaxMinRC</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets max/min dates in Recent Changes.  <a href="#a1ef9cb10491e8e4b1ee95d318536ca7b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classc_main_data.html#acfbf55a2b4a425fa97a4f4491e0e560f">pf_fetchAllSQL</a> ($strSQL, $pdoFetchStyle=PDO::FETCH_ASSOC)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Fetch all rows to an assoc array.  <a href="#acfbf55a2b4a425fa97a4f4491e0e560f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classc_main_data.html#a66b67d356902020dd46c7a1748fa8c69">pf_throwSQLError</a> ()</td></tr>
@@ -195,6 +199,52 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>a string of wiki-style date stamps SQL separated with OR </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a947de261e970590ffdd86e6c4e6d8271"></a><!-- doxytag: member="cMainData::pf_getLocalMaxMinRC" ref="a947de261e970590ffdd86e6c4e6d8271" args="($numDateTZ)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">pf_getLocalMaxMinRC </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"> <em>numDateTZ</em>&#160;)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Gets local max/min dates in Recent Changes. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">$numDateTZ</td><td>A project's current timezone</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>array( 'min' =&gt; almost ISO date (no 'T'), 'max' =&gt; almost ISO date (no 'T'), ) </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a1ef9cb10491e8e4b1ee95d318536ca7b"></a><!-- doxytag: member="cMainData::pf_getMaxMinRC" ref="a1ef9cb10491e8e4b1ee95d318536ca7b" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">pf_getMaxMinRC </td>
+          <td>(</td>
+          <td class="paramname">&#160;)</td>
+          <td><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Gets max/min dates in Recent Changes. </p>
+<dl class="note"><dt><b>Note:</b></dt><dd>The times are GMT.</dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>array( 'rc_min' =&gt; wikiTimeStamp, 'rc_max' =&gt; wikiTimeStamp, ) </dd></dl>
 
 </div>
 </div>
