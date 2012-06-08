@@ -40,8 +40,8 @@
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classc_cache.html#a8d2ba07c360a70b82427b0191dad72a4">__construct</a> ($strCacheSalt='', $strCachePath='./cache/')</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a8d2ba07c360a70b82427b0191dad72a4"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classc_cache.html#ac16297e1c67fc7c207fcafa122984036">__construct</a> ($strCacheSalt='', $strCachePath='./cache/', $isCacheKeyToBecomePath=false, $strCacheKeyToPathSeparator='-')</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#ac16297e1c67fc7c207fcafa122984036"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classc_cache.html#a57faa83dd27a102ac93eca151602e86a">pf_writeToCache</a> ($strCacheName, $strCacheKey, $vCacheMe)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Write data to cache.  <a href="#a57faa83dd27a102ac93eca151602e86a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classc_cache.html#a53b1ce283e754875f2f137da6bcc81dd">pf_readFromCache</a> ($strCacheName, $strCacheKey)</td></tr>
@@ -67,12 +67,18 @@ Private Attributes</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Realtive or absolute path to a folder that will contain cache.  <a href="#ad81f54ffbdbe8de4f71e9ee38e9250ae"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abc47213eb5b531d9f80c0d395e8de59a"></a><!-- doxytag: member="cCache::$strCacheSalt" ref="abc47213eb5b531d9f80c0d395e8de59a" args="" -->
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classc_cache.html#abc47213eb5b531d9f80c0d395e8de59a">$strCacheSalt</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">More or less random string to be appended to a file name. <br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">More or less random string to be appended to a file name/path. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae79dc831f8f1848ff48b22c5b8ba28ce"></a><!-- doxytag: member="cCache::$isCacheKeyToBecomePath" ref="ae79dc831f8f1848ff48b22c5b8ba28ce" args="" -->
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classc_cache.html#ae79dc831f8f1848ff48b22c5b8ba28ce">$isCacheKeyToBecomePath</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">if true then <em>$strCacheKey</em> will be changed to path <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab1ec1c5ffb9f9f6103eb54b14ee1bc35"></a><!-- doxytag: member="cCache::$strCacheKeyToPathSeparator" ref="ab1ec1c5ffb9f9f6103eb54b14ee1bc35" args="" -->
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classc_cache.html#ab1ec1c5ffb9f9f6103eb54b14ee1bc35">$strCacheKeyToPathSeparator</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">if <em>$isCacheKeyToBecomePath</em> is true then this is used to convert <em>$strCacheKey</em> to path <br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>Data caching class. </p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a8d2ba07c360a70b82427b0191dad72a4"></a><!-- doxytag: member="cCache::__construct" ref="a8d2ba07c360a70b82427b0191dad72a4" args="($strCacheSalt='', $strCachePath='./cache/')" -->
+<a class="anchor" id="ac16297e1c67fc7c207fcafa122984036"></a><!-- doxytag: member="cCache::__construct" ref="ac16297e1c67fc7c207fcafa122984036" args="($strCacheSalt='', $strCachePath='./cache/', $isCacheKeyToBecomePath=false, $strCacheKeyToPathSeparator='&#45;')" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -86,7 +92,19 @@ Private Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">$&#160;</td>
-          <td class="paramname"> <em>strCachePath</em> = <code>'./cache/'</code>&#160;</td>
+          <td class="paramname"> <em>strCachePath</em> = <code>'./cache/'</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"> <em>isCacheKeyToBecomePath</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"> <em>strCacheKeyToPathSeparator</em> = <code>'-'</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -105,10 +123,12 @@ Private Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="warning"><dt><b>Warning:</b></dt><dd>Hold your salt in a secrete jar. </dd></dl>
+<dl class="warning"><dt><b>Warning:</b></dt><dd>Hold your salt in a secrete jar ;-). </dd></dl>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">$strCachePath</td><td>A path to the cache folder. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">$isCacheKeyToBecomePath</td><td>Set to true to enable CacheKey to Path conversion </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">$strCacheKeyToPathSeparator</td><td>Separator used to convert CacheKey to subdirs (only used if <em>$isCacheKeyToBecomePath</em> is true) </td></tr>
   </table>
   </dd>
 </dl>

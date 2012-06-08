@@ -8,11 +8,27 @@
 	$arrAvailableDates = array();
 	while (false !== ($strEntry = $d->read()))
 	{
-		// is_file($d->path.$strEntry) && 
-		if (preg_match('/pbase_==_([0-9\-]+)\.php/', $strEntry, $arrMatches))
+		if (is_dir($d->path.$strEntry) && preg_match('/([0-9]+)/', $strEntry))
 		{
-			$numDateTZ = date("Z", strtotime($arrMatches[1]))/3600;
-			$arrAvailableDates[] = (strtotime($arrMatches[1].' GMT') - $numDateTZ*3600) * 1000;
+			$sd1 = dir($d->path.$strEntry.'/');
+			while (false !== ($strEntryS1 = $sd1->read()))
+			{
+				if (is_dir($sd1->path.$strEntryS1) && preg_match('/([0-9]+)/', $strEntryS1))
+				{
+					$sd2 = dir($sd1->path.$strEntryS1.'/');
+					while (false !== ($strEntryS2 = $sd2->read()))
+					{
+						if (is_dir($sd2->path.$strEntryS2) && preg_match('/([0-9]+)/', $strEntryS2))
+						{
+							$strDate = $strEntry.'-'.$strEntryS1.'-'.$strEntryS2;
+							$numDateTZ = date("Z", strtotime($strDate))/3600;
+							$arrAvailableDates[] = (strtotime($strDate.' GMT') - $numDateTZ*3600) * 1000;
+						}
+					}
+					$sd2->close();
+				}
+			}
+			$sd1->close();
 		}
 	}
 	$d->close();

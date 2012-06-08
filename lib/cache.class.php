@@ -6,8 +6,10 @@ class cCache
 {
 	private $strCachePath;	//!< @brief Realtive or absolute path to a folder that will contain cache.
 							//!< @note Always contains '/' at the end.
-	private $strCacheSalt;	//!< More or less random string to be appended to a file name
-	public $isDisabled;	//!< if true then writting to cache and reading from cache is disable
+	private $strCacheSalt;	//!< More or less random string to be appended to a file name/path
+	public $isDisabled;		//!< if true then writting to cache and reading from cache is disable
+	private $isCacheKeyToBecomePath;		//!< if true then \a $strCacheKey will be changed to path
+	private $strCacheKeyToPathSeparator;	//!< if \a $isCacheKeyToBecomePath is true then this is used to convert \a $strCacheKey to path
 
 	/*!
 		@brief Constructor
@@ -15,14 +17,19 @@ class cCache
 		Use \a $strCachePath to change the default folder.
 		
 		@param [in] $strCacheSalt Add salt for paranoid security.
-		@warning Hold your salt in a secrete jar.
+			@warning Hold your salt in a secrete jar ;-).
 		@param [in] $strCachePath A path to the cache folder.
+		@param [in] $isCacheKeyToBecomePath Set to true to enable CacheKey to Path conversion
+		@param [in] $strCacheKeyToPathSeparator Separator used to convert CacheKey to subdirs (only used if \a $isCacheKeyToBecomePath is true)
 	*/
-	public function __construct($strCacheSalt='', $strCachePath='./cache/')
+	public function __construct($strCacheSalt='', $strCachePath='./cache/', $isCacheKeyToBecomePath=false, $strCacheKeyToPathSeparator='-')
 	{
 		$this->strCachePath = rtrim ($strCachePath, '/').'/';
 		$this->strCacheSalt = $strCacheSalt;
 		$this->isDisabled = false;
+		// cachekey setup
+		$this->isCacheKeyToBecomePath = $isCacheKeyToBecomePath;
+		$this->strCacheKeyToPathSeparator = $strCacheKeyToPathSeparator;
 	}
 
 	/*!
@@ -44,6 +51,12 @@ class cCache
 		}
 		
 		$strFile = $this->pf_getCacheFileName($strCacheName, $strCacheKey);
+		$strDir = dirname($strFile);
+		if (!is_dir($strDir) && !mkdir($strDir, 0777, true))
+		{
+			trigger_error("writeToCache failed upon creating directory for $strCacheName[$strCacheKey]");
+			return 0;
+		}
 		if (!file_put_contents($strFile ,"<?php\n\$vCachedValued = \n".var_export ($vCacheMe, true).";\n?>"))
 		{
 			trigger_error("writeToCache failed for $strCacheName[$strCacheKey]");
@@ -159,11 +172,21 @@ class cCache
 	*/
 	private function pf_getCacheFileName($strCacheName, $strCacheKey)
 	{
-		$reEvilChars = '#[/\\:*?"<>|\'\.=]#';	// = because it is use in name-key concat
+		$reEvilChars = '#[/\\:*?"<>|\'\.=]#';	// '=' too because it is used in the name-key concat below
 		
-		$strFileName = preg_replace($reEvilChars, '_', $this->strCacheSalt);
-		$strFileName .= preg_replace($reEvilChars, '_', $strCacheName);
-		$strFileName .= '_==_'.preg_replace($reEvilChars, '_', $strCacheKey);
+		if (!$this->isCacheKeyToBecomePath)
+		{
+			$strFileName = preg_replace($reEvilChars, '_', $this->strCacheSalt);
+			$strFileName .= preg_replace($reEvilChars, '_', $strCacheName);
+			$strFileName .= '_==_'.preg_replace($reEvilChars, '_', $strCacheKey);
+		}
+		else
+		{
+			$strFileName = strtr($strCacheKey, array($this->strCacheKeyToPathSeparator => '/'));
+			$strFileName .= '/'.preg_replace($reEvilChars, '_', $this->strCacheSalt);
+			$strFileName .= preg_replace($reEvilChars, '_', $strCacheName);
+			$strFileName .= '_==_'.preg_replace($reEvilChars, '_', $strCacheKey);
+		}
 
 		$strFileName = $this->strCachePath . $strFileName . '.php';
 		return $strFileName;

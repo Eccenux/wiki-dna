@@ -44,7 +44,7 @@
 	require_once './lib/cache.class.php';
 	
 	// init cache object
-	$oCache = new cCache($arrMyCnf['dna']['cache_salt']);
+	$oCache = new cCache($arrMyCnf['dna']['cache_salt'], './cache/', true, '-');
 
 	// error handling
 	include './lib/fun_error.php';
