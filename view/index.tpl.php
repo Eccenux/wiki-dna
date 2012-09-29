@@ -56,7 +56,7 @@
 	<li>Koniec:   <?=$arrLocalMaxMinRC['max']?></li>
 </ul>
 
-<p>Zwykle tabela ostatnich zmian sięga około miesiąc wstecz aż w okolice bieżącej godziny. Czasem zdarzają się jednak awarie lub przestoje, które powodują, że zaległości są większe. Jeśli zaległości są większe niż parę godzin, to poinformuj o problemach <a href="https://jira.toolserver.org/">administratorów Toolservera</a>.</p>
+<p>Zwykle tabela ostatnich zmian sięga około miesiąc wstecz aż w okolice bieżącej godziny. Czasem zdarzają się jednak awarie lub przestoje, które powodują, że zaległości są większe. Jeśli zaległości są większe niż parę godzin, to poinformuj o problemach <a href="https://jira.toolserver.org/">administratorów Toolservera</a>. Zobacz też <a href="http://toolserver.org/~bryan/stats/replag/?cluster=s2#s2-weekly" title="powyżej 4*3.600 wymaga specjalnych działań, powyżej 10.000 jest niepokojące">statystyki replikacji (w sekundach)</a>.</p>
 
 <h2>Statystyki archiwalne</h2>
 

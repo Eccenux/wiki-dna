@@ -1,3 +1,14 @@
+<script type="text/javascript">
+	var reData = /\/([^\/?]+)\?Dy=([0-9]+)&Dm=([0-9]+)&Dd=([0-9]+)&submit=.+/;
+	if ('replaceState' in history && location.href.search(reData))
+	{
+		location.href.replace(reData, function(a, script, Dy, Dm, Dd)
+		{
+			history.replaceState(null, null, script+'?D='+Dy+'-'+Dm+'-'+Dd);
+			return a;
+		});
+	}
+</script>
 <table>
 	<tr>
 		<th rowspan="2">l.p.</th>
