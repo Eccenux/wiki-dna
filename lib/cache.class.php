@@ -1,6 +1,6 @@
 <?php
-/*!
-	@brief Data caching class
+/**
+	Data caching class
 */
 class cCache
 {
@@ -11,8 +11,8 @@ class cCache
 	private $isCacheKeyToBecomePath;		//!< if true then \a $strCacheKey will be changed to path
 	private $strCacheKeyToPathSeparator;	//!< if \a $isCacheKeyToBecomePath is true then this is used to convert \a $strCacheKey to path
 
-	/*!
-		@brief Constructor
+	/**
+		Constructor
 		
 		Use \a $strCachePath to change the default folder.
 		
@@ -32,8 +32,8 @@ class cCache
 		$this->strCacheKeyToPathSeparator = $strCacheKeyToPathSeparator;
 	}
 
-	/*!
-		@brief Write data to cache
+	/**
+		Write data to cache
 		
 		@param [in] $strCacheName An id of data to be cached
 		@param [in] $strCacheKey Cache key (e.g. might be page_id for caching page data)
@@ -65,8 +65,8 @@ class cCache
 		return 1;
 	}
 
-	/*!
-		@brief Read data from cache
+	/**
+		Read data from cache
 		
 		@param [in] $strCacheName An id of data that is cached
 		@param [in] $strCacheKey Cache key (e.g. might be page_id for caching page data)
@@ -96,8 +96,8 @@ class cCache
 		return $vCachedValued;
 	}
 
-	/*!
-		@brief Check if data is cached
+	/**
+		Check if data is cached
 		
 		@param [in] $strCacheName An id of data that is cached
 		@param [in] $strCacheKey Cache key (e.g. might be page_id for caching page data)
@@ -119,8 +119,8 @@ class cCache
 		return false;
 	}
 
-	/*!
-		@brief Returns storage time of cache entry
+	/**
+		Returns storage time of cache entry
 		
 		@param [in] $strCacheName An id of data that is cached
 		@param [in] $strCacheKey Cache key (e.g. might be page_id for caching page data)
@@ -142,8 +142,8 @@ class cCache
 		return false;
 	}
 
-	/*!
-		@brief Remove data from cache
+	/**
+		Remove data from cache
 		
 		@param [in] $strCacheName An id of data that is cached
 		@param [in] $strCacheKey Cache key (e.g. might be page_id for caching page data)
@@ -160,8 +160,8 @@ class cCache
 		return true;
 	}
 
-	/*!
-		@brief Get a name of a file
+	/**
+		Get a name of a file
 		
 		@param [in] $strCacheName An id of data to be cached
 		@param [in] $strCacheKey Cache key (e.g. might be page_id for caching page data)

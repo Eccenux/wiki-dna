@@ -1,5 +1,5 @@
 <?php
-/*!
+/**
 	@file
 	@brief Main file
 	

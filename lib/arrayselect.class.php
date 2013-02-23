@@ -1,7 +1,9 @@
 <?php
-/*!
-	@brief Array data selection class. Assoc array is assumed.
-*/
+/**
+ * Array data selection class.
+ *
+ * Assoc. array is assumed.
+ */
 class cArraySelector
 {
 	private $strSeparator;	//!< The separator string to be used
@@ -11,7 +13,15 @@ class cArraySelector
 	{
 	}
 	
-	//! Function for the array_reduce
+	/**
+	 * Function for the array_reduce.
+	 * 
+	 * @see pf_selectData()
+	 *
+	 * @param string $strPartialResult
+	 * @param array $arrCurValue
+	 * @return string
+	 */
 	private function pf_reduceData($strPartialResult, $arrCurValue)
 	{
 		$v = $arrCurValue[$this->strSelColumn];
@@ -22,12 +32,17 @@ class cArraySelector
 		return $strPartialResult;
 	}
 	
-	/*!
-		@brief Selects values from one column from an associative array
-	
-		Call this to select values of a \a $strColumn from \a $arrData
-		which will be concatenated to a string separated by \a $strSeparator
-	*/
+	/**
+	 * Selects values from one column from an associative array.
+	 *
+	 * Call this to select values of a \a $strColumn from \a $arrData
+	 * which will be concatenated to a string separated by \a $strSeparator.
+	 *
+	 * @param array $arrData
+	 * @param string $strColumn
+	 * @param string $strSeparator
+	 * @return string
+	 */
 	public function pf_selectData(&$arrData, $strColumn, $strSeparator=",")
 	{
 		$this->strSeparator = $strSeparator;

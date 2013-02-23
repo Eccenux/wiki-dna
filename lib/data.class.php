@@ -2,16 +2,16 @@
 // include an array selector class
 require_once './lib/arrayselect.class.php';
 
-/*!
-	@brief Data manipulation class.
+/**
+	Data manipulation class.
 */
 class cMainData
 {
 	private $db;	//!< PDO object
 	private $dbSt;	//!< Last PDO Statement
 
-	/*!
-		@brief Construct
+	/**
+		Construct.
 		
 		@param [in] $strHost Database host
 		@param [in] $strDbName Database name
@@ -29,8 +29,8 @@ class cMainData
 		); 
 	}
 
-	/*!
-		@brief Generate date-time stamps SQL
+	/**
+		Generate date-time stamps SQL.
 		
 		Generate date-time stamps SQL with column name as "{column}".
 		
@@ -53,8 +53,8 @@ class cMainData
 		return $vStamps;
 	}
 
-	/*!
-		@brief Gets max/min dates in Recent Changes
+	/**
+		Gets max/min dates in Recent Changes.
 		
 		@note The times are GMT.
 		
@@ -77,8 +77,8 @@ class cMainData
 		return $vTimes;
 	}
 
-	/*!
-		@brief Gets local max/min dates in Recent Changes
+	/**
+		Gets local max/min dates in Recent Changes.
 		
 		@param [in] $numDateTZ A project's current timezone
 		
@@ -97,8 +97,8 @@ class cMainData
 		);
 	}
 	
-	/*!
-		@brief Check if given date is in Recent Changes
+	/**
+		Check if given date is in Recent Changes.
 		
 		@param [in] $strDay The day for the select
 		@param [in] $numDateTZ A project timezone at that date
@@ -137,8 +137,8 @@ class cMainData
 		return $numRet;
 	}
 	
-	/*!
-		@brief Get basic page info for DNA
+	/**
+		Get basic page info for DNA.
 		
 		Gets basic pages info for the given \a strDay that where created on that day.
 		
@@ -227,8 +227,8 @@ class cMainData
 		return $vPages;
 	}
 
-	/*!
-		@brief Get length of last revision for DNA
+	/**
+		Get length of last revision for DNA.
 		
 		Gets length of pages at the end of the day.
 		
@@ -284,8 +284,8 @@ class cMainData
 		return $arrRet;
 	}
 
-	/*!
-		@brief Get user info for DNA
+	/**
+		Get user info for DNA.
 		
 		Currently only gets user name for the pages given in the pages array.
 		
@@ -319,8 +319,8 @@ class cMainData
 		return $arrRet;
 	}
 
-	/*!
-		@brief Get page title for DNA
+	/**
+		Get page title for DNA.
 		
 		Gets page titles and namespace for the pages given in the pages array.
 		Does not append this data beacuse it might be easier to refresh redirects this way.
@@ -355,8 +355,8 @@ class cMainData
 		return $arrRet;
 	}
 	
-	/*!
-		@brief Fetch all rows to an assoc array 
+	/**
+		Fetch all rows to an assoc array.
 		
 		@param [in] $strSQL The query
 		@param [in] $pdoFetchStyle PDO fetch style (defaults to FETCH_ASSOC)
@@ -376,10 +376,10 @@ class cMainData
 		return $this->dbSt->fetchAll($pdoFetchStyle);
 	}
 
-	/*!
-		@brief Throw SQL Error
+	/**
+		Throw SQL Error.
 		
-		Throw SQL error (call after unsuccessful query execution)
+		Call after unsuccessful query execution.
 	*/
 	private function pf_throwSQLError()
 	{

@@ -1,5 +1,5 @@
 <?php
-/*!
+/**
 	@file
 	@brief This script is a semi-function that returns \a $arrDNAUserData and \a $oTicks
 	

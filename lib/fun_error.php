@@ -1,10 +1,10 @@
 <?
-/*!
+/**
 	@file
 	@brief Functions for error-handling stuff
-	
+
 	Basic usage:
-	
+
 	For SQL
 		\code
 		trigger_error ('[sql]:'.$zapytanie, E_USER_ERROR);
@@ -54,18 +54,15 @@ function win2utf8($str)
 	return $str;
 }
 
-/* --------------------------------------------------------- *\
-	Funkcja: myVarDump
-	
-	Zwraca lub wyswietla sformatowany HTML-owo 
-	zrzut wartosci zmiennej (także tablicy)
-	
-	Parametry:
-		$var - zmienna do wyswietlenia
-		$return - domyslnie true
-			true - kod HTML zostanie zwrócony jako wartosc
-			false - kod HTML zostanie wyświetlony (zwykłe echo)
-\* --------------------------------------------------------- */
+/**
+ * Zwraca lub wyswietla sformatowany HTML-owo zrzut wartosci zmiennej (także tablicy).
+ *
+ * @param mixed $var zmienna do wyswietlenia
+ * @param boolean $return domyslnie true
+ * 		true - kod HTML zostanie zwrócony jako wartosc
+ * 		false - kod HTML zostanie wyświetlony (zwykłe echo)
+ * @return string.
+ */
 function myVarDump($var, $return = true)
 {
 	$txt = '<div style="white-space: pre">'. wordwrap(htmlspecialchars(var_export($var,true)),90) .'</div>';
@@ -75,28 +72,21 @@ function myVarDump($var, $return = true)
 		echo $txt;
 }
 
-/* --------------------------------------------------------- *\
-	Funkcja: nuxDump
-	
-	szybki dump
-	
-	Parametry:
-		$var - wartość zmiennej do wyświetlenia
-\* --------------------------------------------------------- */
+/**
+ * szybki dump
+ *
+ * @param mixed $var wartość zmiennej do wyświetlenia
+ */
 function nuxDump($var)
 {
 	trigger_error (myVarDump($var), E_USER_NOTICE);
 }
 
-/* --------------------------------------------------------- *\
-	Funkcja: bug
-	
-	szybki śledź ;)
-	
-	Parametry:
-		//$var_name - nazwa zmiennej do "śledzenia"
-		$var- nazwa zmiennej do "śledzenia"
-\* --------------------------------------------------------- */
+/**
+ * szybki śledź ;)
+ *
+ * @param mixed $var nazwa zmiennej do "śledzenia"
+ */
 function bug($var='TRACE-ONLY')
 {
 	global $debug_msgtext;
@@ -124,10 +114,10 @@ function bug($var='TRACE-ONLY')
 		{
 			$fun = empty($call['type']) ? $call['function'] : $call['class'].$call['type'].$call['function'];
 			$file = str_replace($root, '', $call['file']);
-			
+
 			$errmsg .= "\n<center style='width:150px'> &#8593; &nbsp; &nbsp; &nbsp; &#8593; </center>";
 			$errmsg .= "\n<b>[{$call['line']}] {$file}</b>";
-			
+
 			// funkcja i jej argumenty
 			$errmsg .= "\n<br/>$fun():\n<pre>";
 			foreach ($call['args'] as &$arg)
@@ -160,11 +150,9 @@ function bug($var='TRACE-ONLY')
 	}
 }
 
-/* --------------------------------------------------------- *\
-	Funkcja: init_myErrorHandler
-	
-	Inicjowanie obsługi błędów
-\* --------------------------------------------------------- */
+/**
+ * Inicjowanie obsługi błędów
+ */
 function init_myErrorHandler()
 {
 	global $debug_msgtext;
@@ -173,18 +161,16 @@ function init_myErrorHandler()
 	set_error_handler('myErrorHandler');
 }
 
-/* --------------------------------------------------------- *\
-	Funkcja: myErrorHandler
-	
-	Funkcja do obsługi błędów. Wywołanie opisane wczesniej.
-	
-	Opis ogólny i parametrów na stronie:
-	http://pl.php.net/manual/pl/function.set-error-handler.php
-	
-	Parametry (globalne):
-		$debug_msgtext - zmienna przechowująca dotychczasowe błędy 
-			"zerowana" przy inicjalizacji (fun. init_myErrorHandler)
-\* --------------------------------------------------------- */
+/**
+ * Funkcja do obsługi błędów. Wywołanie opisane wczesniej.
+ *
+ * Opis ogólny i opis parametrów na stronie:
+ * http://pl.php.net/manual/pl/function.set-error-handler.php
+ *
+ * Parametry (globalne):
+ * 	$debug_msgtext - zmienna przechowująca dotychczasowe błędy
+ * 		"zerowana" przy inicjalizacji (fun. init_myErrorHandler)
+ */
 function myErrorHandler($errno, $errmsg, $filename, $linenum)
 {
 	global $debug_msgtext;
@@ -246,23 +232,21 @@ function myErrorHandler($errno, $errmsg, $filename, $linenum)
 	}
 }
 
-/* --------------------------------------------------------- *\
-	Funkcja: myErrorHandler_sql
-	
-	Zwraca sformatowany HTML-owo kod błędu i zapisuje 
-	poufne dane do pliku (stała: HANDLER_ERR_LOG).
-	
-	Parametry:
-		$sql - kod zapytania SQL (które wywołało bład)
-		$err_info - informacja o błędzie (zwykle z jakiej funkcji - exec | prep)
-		$errno - num. typu błędu (E_USER_ERROR | E_USER_WARNING | E_USER_NOTICE)
-		$err_file_name - nazwa pliku, w którym wystapił bład
-		$err_line_num - numer linii pliku, w miejscu wystapienia błędu
-\* --------------------------------------------------------- *
+/*
+ * Zwraca sformatowany HTML-owo kod błędu i zapisuje
+ * poufne dane do pliku (stała: HANDLER_ERR_LOG).
+ *
+ * @param string $sql kod zapytania SQL (które wywołało bład)
+ * @param string $err_info informacja o błędzie (zwykle z jakiej funkcji - exec | prep)
+ * @param integer $errno num. typu błędu (E_USER_ERROR | E_USER_WARNING | E_USER_NOTICE)
+ * @param string $err_file_name nazwa pliku, w którym wystapił bład
+ * @param integer $err_line_num numer linii pliku, w miejscu wystapienia błędu
+ * @return string
+ *
 function myErrorHandler_sql ($sql, $err_info, $errno, $err_file_name, $err_line_num)
 {
 	global $db;
-	
+
 	$ret_err_msg = 'db sql error';
 
 	$err_log_file = HANDLER_ERR_LOG;
@@ -270,21 +254,21 @@ function myErrorHandler_sql ($sql, $err_info, $errno, $err_file_name, $err_line_
 	{
 		$sql_errno = $db->errno();
 		$sql_error = win2utf8($db->error());
-		
+
 		$log_msg = "\n--------------------------------\n ". date('D d.m.Y H:i:s (T)')
 			. "\n $err_line_num - $err_file_name\n--------------------------------\n";
-		
+
 		if (!empty($err_info))
 		{
 			$log_msg .= "[" . $err_info . "] ";
 		}
-		
+
 		if ($errno != E_USER_NOTICE && !empty($sql_error))
 		{
 			if ($sql_errno != -1)	// connection error
 			{
 				$err_msg = str_replace('Something is wrong in your syntax', 'Błąd w składni', $sql_error);
-				
+
 				$log_msg .= "nieprawidłowe zapytanie: \n". $sql;
 				$log_msg .= "\nBłąd (" . $sql_errno . "): $err_msg\n";
 			}
@@ -311,21 +295,21 @@ function myErrorHandler_sql ($sql, $err_info, $errno, $err_file_name, $err_line_
 		return '<div class="mymsgdie"><b>Wystąpił błąd bazy danych!</b><br />Jeśli to się powtórzy, to prosimy o kontakt przez e-mail.</div>';
 	}
 }
+/**/
 
-/* --------------------------------------------------------- *\
-	Funkcja: myErrorHandler_std
-	
-	Zwraca sformatowany HTML-owo kod błędu i zapisuje 
-	poufne dane do pliku (stała: HANDLER_ERR_LOG).
-	
-	Parametry:
-		jak w fun. myErrorHandler
-\* --------------------------------------------------------- */
+/**
+ * Zwraca sformatowany HTML-owo kod błędu i zapisuje
+ * poufne dane do pliku (stała: HANDLER_ERR_LOG).
+ *
+ * Parametry jak w fun. myErrorHandler.
+ *
+ * @return string.
+ */
 function myErrorHandler_std ($errno, $errmsg, $err_file_name, $err_line_num)
 {
 	//
 	// translation array
-	//	
+	//
 	$errortype = array (
 		E_WARNING		=> 'Warning',
 		E_NOTICE		=> 'Notice',
@@ -346,7 +330,7 @@ function myErrorHandler_std ($errno, $errmsg, $err_file_name, $err_line_num)
 	$debug_msgtext = "<div>
 		<b>{$errortype[$errno]}</b> ($errno): $errmsg<br/>
 		In [$dir_name/<b>$file_name</b>] at line ($err_line_num)";
-	
+
 	/***
 	// get file's lines
 	$handle = fopen($err_file_name, 'r');
@@ -369,7 +353,7 @@ function myErrorHandler_std ($errno, $errmsg, $err_file_name, $err_line_num)
 	$debug_msgtext .= '<br/>'.highlight_string ($file_lines, TRUE);
 	fclose($handle);
 	/**/
-	
+
 	// close debug div
 	$debug_msgtext .=  "</div>\n\n";
 
@@ -386,7 +370,7 @@ function myErrorHandler_std ($errno, $errmsg, $err_file_name, $err_line_num)
 		error_log ($log_debug_msgtext, 3, HANDLER_ERR_LOG);
 	}
 	/**/
-	
+
 	return $debug_msgtext;
 }
 

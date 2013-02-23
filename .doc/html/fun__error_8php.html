@@ -19,10 +19,13 @@
   <div class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>Globals</span></a></li>
     </ul>
   </div>
 </div>
 <div class="header">
+  <div class="summary">
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <h1>lib/fun_error.php File Reference</h1>  </div>
 </div>
@@ -31,6 +34,21 @@
 <p>Functions for error-handling stuff.  
 <a href="#_details">More...</a></p>
 <table class="memberdecls">
+<tr><td colspan="2"><h2><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fun__error_8php.html#a063c694ea6fd4ae8d2782628a61112fe">myVarDump</a> ($var, $return=true)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca lub wyswietla sformatowany HTML-owo zrzut wartosci zmiennej (także tablicy).  <a href="#a063c694ea6fd4ae8d2782628a61112fe"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fun__error_8php.html#af2adc2223915ae0a5ed92ec43e926f49">nuxDump</a> ($var)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">szybki dump  <a href="#af2adc2223915ae0a5ed92ec43e926f49"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fun__error_8php.html#a5a0c8ac5b7bab5afe890cff4b0e8d509">bug</a> ($var='TRACE-ONLY')</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">szybki śledź ;)  <a href="#a5a0c8ac5b7bab5afe890cff4b0e8d509"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0148c767eb5a5be27f940961fe6cca93"></a><!-- doxytag: member="fun_error.php::init_myErrorHandler" ref="a0148c767eb5a5be27f940961fe6cca93" args="()" -->
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fun__error_8php.html#a0148c767eb5a5be27f940961fe6cca93">init_myErrorHandler</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicjowanie obsługi błędów. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fun__error_8php.html#ac6951305d3a452a3972ec079ddeb8872">myErrorHandler</a> ($errno, $errmsg, $filename, $linenum)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja do obsługi błędów.  <a href="#ac6951305d3a452a3972ec079ddeb8872"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fun__error_8php.html#a0e9a34d2fb8f817270cf3712d130c8c0">myErrorHandler_std</a> ($errno, $errmsg, $err_file_name, $err_line_num)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca sformatowany HTML-owo kod błędu i zapisuje poufne dane do pliku (stała: HANDLER_ERR_LOG).  <a href="#a0e9a34d2fb8f817270cf3712d130c8c0"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>Functions for error-handling stuff. </p>
@@ -42,10 +60,185 @@
         trigger_error (<span class="stringliteral">&#39;tekst błędu&#39;</span>, E_USER_WARNING);
         trigger_error (<span class="stringliteral">&#39;tekst błędu&#39;</span>, E_USER_NOTICE);
 </pre></div><p> Showing variables when doing various test </p>
-<div class="fragment"><pre class="fragment">        trigger_error (myVarDump($zmienna), E_USER_NOTICE);
+<div class="fragment"><pre class="fragment">        trigger_error (<a class="code" href="fun__error_8php.html#a063c694ea6fd4ae8d2782628a61112fe" title="Zwraca lub wyswietla sformatowany HTML-owo zrzut wartosci zmiennej (także tablicy).">myVarDump</a>($zmienna), E_USER_NOTICE);
         or
-        bug(<span class="stringliteral">&#39;zmienna&#39;</span>);
-</pre></div> </div>
+        <a class="code" href="fun__error_8php.html#a5a0c8ac5b7bab5afe890cff4b0e8d509" title="szybki śledź ;)">bug</a>(<span class="stringliteral">&#39;zmienna&#39;</span>);
+</pre></div> <hr/><h2>Function Documentation</h2>
+<a class="anchor" id="a5a0c8ac5b7bab5afe890cff4b0e8d509"></a><!-- doxytag: member="fun_error.php::bug" ref="a5a0c8ac5b7bab5afe890cff4b0e8d509" args="($var='TRACE&#45;ONLY')" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bug </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"> <em>var</em> = <code>'TRACE-ONLY'</code>&#160;)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>szybki śledź ;) </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">mixed</td><td class="paramname">$var</td><td>nazwa zmiennej do "śledzenia" </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ac6951305d3a452a3972ec079ddeb8872"></a><!-- doxytag: member="fun_error.php::myErrorHandler" ref="ac6951305d3a452a3972ec079ddeb8872" args="($errno, $errmsg, $filename, $linenum)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">myErrorHandler </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"> <em>errno</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"> <em>errmsg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"> <em>filename</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"> <em>linenum</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Funkcja do obsługi błędów. </p>
+<p>Wywołanie opisane wczesniej.</p>
+<p>Opis ogólny i opis parametrów na stronie: <a href="http://pl.php.net/manual/pl/function.set-error-handler.php">http://pl.php.net/manual/pl/function.set-error-handler.php</a></p>
+<p>Parametry (globalne): $debug_msgtext - zmienna przechowująca dotychczasowe błędy "zerowana" przy inicjalizacji (fun. init_myErrorHandler) </p>
+
+</div>
+</div>
+<a class="anchor" id="a0e9a34d2fb8f817270cf3712d130c8c0"></a><!-- doxytag: member="fun_error.php::myErrorHandler_std" ref="a0e9a34d2fb8f817270cf3712d130c8c0" args="($errno, $errmsg, $err_file_name, $err_line_num)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">myErrorHandler_std </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"> <em>errno</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"> <em>errmsg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"> <em>err_file_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"> <em>err_line_num</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Zwraca sformatowany HTML-owo kod błędu i zapisuje poufne dane do pliku (stała: HANDLER_ERR_LOG). </p>
+<p>Parametry jak w fun. myErrorHandler.</p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>string. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a063c694ea6fd4ae8d2782628a61112fe"></a><!-- doxytag: member="fun_error.php::myVarDump" ref="a063c694ea6fd4ae8d2782628a61112fe" args="($var, $return=true)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">myVarDump </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"> <em>var</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"> <em>return</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Zwraca lub wyswietla sformatowany HTML-owo zrzut wartosci zmiennej (także tablicy). </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">mixed</td><td class="paramname">$var</td><td>zmienna do wyswietlenia </td></tr>
+    <tr><td class="paramtype">boolean</td><td class="paramname">$return</td><td>domyslnie true true - kod HTML zostanie zwrócony jako wartosc false - kod HTML zostanie wyświetlony (zwykłe echo) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>string. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="af2adc2223915ae0a5ed92ec43e926f49"></a><!-- doxytag: member="fun_error.php::nuxDump" ref="af2adc2223915ae0a5ed92ec43e926f49" args="($var)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">nuxDump </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"> <em>var</em>&#160;)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>szybki dump </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">mixed</td><td class="paramname">$var</td><td>wartość zmiennej do wyświetlenia </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div>
 <hr class="footer"/><address class="footer"><small>Generated by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.2 </small></address>

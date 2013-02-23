@@ -34,7 +34,7 @@
 </div>
 <div class="contents">
 <!-- doxytag: class="cArraySelector" -->
-<p>Array data selection class. Assoc array is assumed.  
+<p>Array data selection class.  
 <a href="#_details">More...</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
@@ -43,9 +43,8 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Selects values from one column from an associative array.  <a href="#ad3058a7e7c0e79f3eba276e77f616163"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aeb2ec54cf0343e4e24242898fb101565"></a><!-- doxytag: member="cArraySelector::pf_reduceData" ref="aeb2ec54cf0343e4e24242898fb101565" args="($strPartialResult, $arrCurValue)" -->
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classc_array_selector.html#aeb2ec54cf0343e4e24242898fb101565">pf_reduceData</a> ($strPartialResult, $arrCurValue)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Function for the array_reduce. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classc_array_selector.html#aeb2ec54cf0343e4e24242898fb101565">pf_reduceData</a> ($strPartialResult, $arrCurValue)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Function for the array_reduce.  <a href="#aeb2ec54cf0343e4e24242898fb101565"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a42632868f60e5612dcc6403867c9186b"></a><!-- doxytag: member="cArraySelector::$strSeparator" ref="a42632868f60e5612dcc6403867c9186b" args="" -->
@@ -56,8 +55,47 @@ Private Attributes</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The name of the column to be selected. <br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<p>Array data selection class. Assoc array is assumed. </p>
+<p>Array data selection class. </p>
+<p>Assoc. array is assumed. </p>
 <hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="aeb2ec54cf0343e4e24242898fb101565"></a><!-- doxytag: member="cArraySelector::pf_reduceData" ref="aeb2ec54cf0343e4e24242898fb101565" args="($strPartialResult, $arrCurValue)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">pf_reduceData </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"> <em>strPartialResult</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"> <em>arrCurValue</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Function for the array_reduce. </p>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classc_array_selector.html#ad3058a7e7c0e79f3eba276e77f616163" title="Selects values from one column from an associative array.">pf_selectData()</a></dd></dl>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">string</td><td class="paramname">$strPartialResult</td><td></td></tr>
+    <tr><td class="paramtype">array</td><td class="paramname">$arrCurValue</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>string </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="ad3058a7e7c0e79f3eba276e77f616163"></a><!-- doxytag: member="cArraySelector::pf_selectData" ref="ad3058a7e7c0e79f3eba276e77f616163" args="(&amp;$arrData, $strColumn, $strSeparator=&quot;,&quot;)" -->
 <div class="memitem">
 <div class="memproto">
@@ -90,7 +128,16 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 
 <p>Selects values from one column from an associative array. </p>
-<p>Call this to select values of a <em>$strColumn</em> from <em>$arrData</em> which will be concatenated to a string separated by <em>$strSeparator</em> </p>
+<p>Call this to select values of a <em>$strColumn</em> from <em>$arrData</em> which will be concatenated to a string separated by <em>$strSeparator</em>.</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">array</td><td class="paramname">$arrData</td><td></td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$strColumn</td><td></td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$strSeparator</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>string </dd></dl>
 
 </div>
 </div>

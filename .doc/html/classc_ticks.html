@@ -40,17 +40,16 @@
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classc_ticks.html#af77fac7abc8291e8f46a8e5b2fb46c15">pf_insTick</a> ($strTickName)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Insert a named tick.  <a href="#af77fac7abc8291e8f46a8e5b2fb46c15"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a65d2dcfe85281f42797c3bb637e69f6b"></a><!-- doxytag: member="cTicks::pf_endTick" ref="a65d2dcfe85281f42797c3bb637e69f6b" args="($strTickName)" -->
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classc_ticks.html#a65d2dcfe85281f42797c3bb637e69f6b">pf_endTick</a> ($strTickName)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">End a named tick (calculate duration) <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a923bf096f2449ae5d26fc3332fbb0833"></a><!-- doxytag: member="cTicks::pf_getDurations" ref="a923bf096f2449ae5d26fc3332fbb0833" args="($boolAddTotal=true)" -->
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classc_ticks.html#a923bf096f2449ae5d26fc3332fbb0833">pf_getDurations</a> ($boolAddTotal=true)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get durations array. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classc_ticks.html#a923bf096f2449ae5d26fc3332fbb0833">pf_getDurations</a> ($boolAddTotal=true)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get durations array.  <a href="#a923bf096f2449ae5d26fc3332fbb0833"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1a3c66dcb7efe4f124dc8bf5245133ac"></a><!-- doxytag: member="cTicks::pf_getTickStamp" ref="a1a3c66dcb7efe4f124dc8bf5245133ac" args="()" -->
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classc_ticks.html#a1a3c66dcb7efe4f124dc8bf5245133ac">pf_getTickStamp</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Function gets tick stamp (microtime) <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classc_ticks.html#a1a3c66dcb7efe4f124dc8bf5245133ac">pf_getTickStamp</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Function gets tick stamp (microtime).  <a href="#a1a3c66dcb7efe4f124dc8bf5245133ac"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad58cd7baaa1716bc4ace12f3815014cd"></a><!-- doxytag: member="cTicks::$dtStart" ref="ad58cd7baaa1716bc4ace12f3815014cd" args="" -->
@@ -66,6 +65,51 @@ Private Attributes</h2></td></tr>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>Ticks measurement. </p>
 <hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a923bf096f2449ae5d26fc3332fbb0833"></a><!-- doxytag: member="cTicks::pf_getDurations" ref="a923bf096f2449ae5d26fc3332fbb0833" args="($boolAddTotal=true)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">pf_getDurations </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"> <em>boolAddTotal</em> = <code>true</code>&#160;)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get durations array. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">boolean</td><td class="paramname">$boolAddTotal</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>array </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a1a3c66dcb7efe4f124dc8bf5245133ac"></a><!-- doxytag: member="cTicks::pf_getTickStamp" ref="a1a3c66dcb7efe4f124dc8bf5245133ac" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">pf_getTickStamp </td>
+          <td>(</td>
+          <td class="paramname">&#160;)</td>
+          <td><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Function gets tick stamp (microtime). </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>float Time in seconds since Unix epoch with microseconds after coma. </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="af77fac7abc8291e8f46a8e5b2fb46c15"></a><!-- doxytag: member="cTicks::pf_insTick" ref="af77fac7abc8291e8f46a8e5b2fb46c15" args="($strTickName)" -->
 <div class="memitem">
 <div class="memproto">
@@ -80,8 +124,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>Insert a named tick </p>
-<dl class="warning"><dt><b>Warning:</b></dt><dd>Always call ins and end tick in pairs! </dd></dl>
+
+<p>Insert a named tick. </p>
+<dl class="warning"><dt><b>Warning:</b></dt><dd>Always call insert and end tick in pairs! </dd></dl>
 
 </div>
 </div>
