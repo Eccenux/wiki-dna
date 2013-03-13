@@ -10,6 +10,8 @@ class cMainData
 	private $db;	//!< PDO object
 	private $dbSt;	//!< Last PDO Statement
 
+	public $allowSlow=false;	//!< Allow slow queries
+
 	/**
 		Construct.
 		
@@ -182,7 +184,9 @@ class cMainData
 		// get ids of first rev of those pages
 		if (!$isInRC)
 		{
-			$strSQL = "SELECT MIN(rev_id) as first_rev_id
+			// this query is slow when replag is high - we allow this sometimes
+			$strSQL = $this->allowSlow ? "SELECT /* SLOW_OK */ " : "SELECT ";
+			$strSQL .= "MIN(rev_id) as first_rev_id
 				FROM revision
 				WHERE rev_page IN ($vPages)
 				GROUP BY rev_page
