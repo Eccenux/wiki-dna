@@ -11,15 +11,18 @@
 	}
 	
 	// parse config file
-	if (function_exists('posix_getuid'))	// on toolserver
+	if (file_exists("./.my.script.cnf"))
 	{
-		$arrUserInfo = posix_getpwuid(posix_getuid());
+		$arrUserInfo['dir'] = './';
 	}
-	else	// this works for me ;-)
+	else
 	{
-		$arrUserInfo['dir'] = '.';
+		$arrUserInfo['dir'] = '../';
 	}
 	$arrMyCnf = parse_ini_file($arrUserInfo['dir'] . "/.my.script.cnf", true);
+	
+	//var_export($arrMyCnf);
+	//die();
 
 	// init data manipulation
 	require_once './lib/data.class.php';
