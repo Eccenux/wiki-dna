@@ -11,7 +11,23 @@ define('NO_HACKING', 1);
 require('./_top.php');
 
 // time limit
-set_time_limit(600); 
+set_time_limit(600);
+
+//
+// CLI refresh mode
+//
+if(php_sapi_name() == "cli" && isset($argc)) {
+	$_GET = array(
+		'allow_slow' => 1,
+		'clear_cache' => 1,
+		'override_sec' => md5($arrMyCnf['dna']['cache_salt']),
+	);
+	if (isset($argv[1])) {
+		$_GET['D'] = $argv[1];
+	} else {
+		$_GET['D'] = date('Y-m-d', strtotime('-3 days'));
+	}
+}
 
 //
 // Preformat some variables
