@@ -16,7 +16,9 @@ set_time_limit(600);
 //
 // CLI refresh mode
 //
+$textOutput = false;
 if(php_sapi_name() == "cli" && isset($argc)) {
+	$textOutput = true;
 	$_GET = array(
 		'allow_slow' => 1,
 		'clear_cache' => 1,
@@ -145,14 +147,25 @@ if (!empty($oTicks))
 //
 // Output
 //
-include('./view/_header.tpl.php');
-if (empty($strDieMessage))
-{
-	include("./view/$strTplFile.tpl.php");
+if (!$textOutput) {
+	include('./view/_header.tpl.php');
+	if (empty($strDieMessage))
+	{
+		include("./view/$strTplFile.tpl.php");
+	}
+	else
+	{
+		echo $strDieMessage;
+	}
+	include('./view/_footer.tpl.php');
+} else {
+	if (!empty($strDieMessage)) {
+		echo $strDieMessage;
+	} else {
+		echo 'Ticks [s]:';
+		foreach ($arrTicks as $strTickName=>$intDurtation) {
+			echo sprintf("\n%s: %.4f", $strTickName, $intDurtation);
+		}
+	}
 }
-else
-{
-	echo $strDieMessage;
-}
-include('./view/_footer.tpl.php');
 ?>
