@@ -1,13 +1,30 @@
 <script type="text/javascript">
-	var reData = /\/([^\/?]+)\?Dy=([0-9]+)&Dm=([0-9]+)&Dd=([0-9]+)&submit=.+/;
-	if ('replaceState' in history && location.href.search(reData))
-	{
-		location.href.replace(reData, function(a, script, Dy, Dm, Dd)
+	/**
+	 * Push/replace history for shorter URL.
+	 *
+	 * @note requires mod_rewrite or host exclusion
+	 *
+	 * lighthttpd config:
+	 * url.rewrite-once += ( "/([0-9]{4}-[0-9]{2}-[0-9]{2})" => "/index.php?D=$1" )
+	 *
+	 * @note browsers automatically add script if you specify '?' in the beginning of the string.
+	 */
+	(function (){
+		var reData = /\?Dy=([0-9]+)&Dm=([0-9]+)&Dd=([0-9]+)&submit/;
+		if ('replaceState' in history)
 		{
-			history.replaceState(null, null, script+'?D='+Dy+'-'+Dm+'-'+Dd);
-			return a;
-		});
-	}
+			location.href.replace(reData, function(a, Dy, Dm, Dd)
+			{
+				var isoDate = Dy+'-'+Dm+'-'+Dd;
+				if (location.host != 'localhost') {	// exclude localhost
+					history.replaceState(null, null, isoDate);
+				} else {
+					history.replaceState(null, null, '?D='+isoDate);
+				}
+				return a;
+			});
+		}
+	})();
 </script>
 <table>
 	<tr>
