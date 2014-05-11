@@ -159,6 +159,7 @@ if (!$textOutput) {
 	}
 	include('./view/_footer.tpl.php');
 } else {
+	echo "date: $strDate2Check\n";
 	if (!empty($strDieMessage)) {
 		echo $strDieMessage;
 	} else {
