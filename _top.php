@@ -1,4 +1,4 @@
-<?
+<?php
 /**
 	@file
 	@brief Init file to be included on top

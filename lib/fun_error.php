@@ -1,4 +1,4 @@
-<?
+<?php
 /**
 	@file
 	@brief Functions for error-handling stuff

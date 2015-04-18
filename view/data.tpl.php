@@ -56,26 +56,26 @@
 	</tr>
 	-->
 	<tr>
-		<? $intLP = 0; ?>
-		<? foreach ($arrDNAUserData as &$u) { ?>
-			<? $intRowSpan = count($u['pages']) ?>
-			<? $intLP++; ?>
+		<?php $intLP = 0; ?>
+		<?php foreach ($arrDNAUserData as &$u) { ?>
+			<?php $intRowSpan = count($u['pages']) ?>
+			<?php $intLP++; ?>
 			<td rowspan="<?=$intRowSpan?>"><?=$intLP?></td>
 			<td rowspan="<?=$intRowSpan?>">
-				<? if (!empty($u['user_name'])) { ?>
+				<?php if (!empty($u['user_name'])) { ?>
 					<a href="<?=$strPageBaseURL?>User:<?=$u['user_name']?>"><?=strtr($u['user_name'],'_',' ')?></a>
 					<span class="extra_links">(<a href="<?=$strPageBaseURL?>Special:Contributions/<?=$u['user_name']?>">wkład</a>)</span>
-				<? } else { ?>
+				<?php } else { ?>
 					<i>Anonimowe edycje</i>
-				<? } ?>
+				<?php } ?>
 			</td>
 			
 			<td rowspan="<?=$intRowSpan?>"><?=$u['total_ok']?></td>
 			<td rowspan="<?=$intRowSpan?>"><?=$u['total_nonok']?></td>
 			<td rowspan="<?=$intRowSpan?>"><?=$u['total_len']?></td>
 			
-			<? $isFirst=true ?>
-			<? foreach ($u['pages'] as &$p) { ?>
+			<?php $isFirst=true ?>
+			<?php foreach ($u['pages'] as &$p) { ?>
 				<?=($isFirst?'':'<tr>')?>
 					<?$strClass=($p['is_ok']?'page_ok':'page_small')?>
 					
@@ -86,10 +86,10 @@
 					<td class="<?=$strClass?>"><?=$p['start_len']?></td>
 					<td class="<?=$strClass?>"><?=$p['end_len']?></td>
 					
-					<? $isFirst=false ?>
+					<?php $isFirst=false ?>
 				</tr>
-			<? } ?>
-		<? } ?>
+			<?php } ?>
+		<?php } ?>
 </table>
 <?/*
 <pre>
