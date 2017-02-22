@@ -77,7 +77,7 @@
 			<?php $isFirst=true ?>
 			<?php foreach ($u['pages'] as &$p) { ?>
 				<?=($isFirst?'':'<tr>')?>
-					<?$strClass=($p['is_ok']?'page_ok':'page_small')?>
+					<?php $strClass=($p['is_ok']?'page_ok':'page_small')?>
 					
 					<td class="<?=$strClass?>">
 						<a href="<?=$strPageBaseURL?><?=$p['page_title']?>"><?=strtr($p['page_title'],'_',' ')?></a>
@@ -91,8 +91,8 @@
 			<?php } ?>
 		<?php } ?>
 </table>
-<?/*
+<?php /*
 <pre>
-	<?var_export($arrDNAUserData);?>
+	<?php var_export($arrDNAUserData);?>
 </pre>
 */?>
