@@ -1,4 +1,4 @@
-<script type="text/javascript" src="cached_dates.js.php"></script>
+<script type="text/javascript" src="cached_dates.js"></script>
 <form action="index.php" method="get">
 	<div id="kal_shown_with_js_holder" style="display:none">
 		<div class="js_kalendarz_holder">
