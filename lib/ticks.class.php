@@ -31,9 +31,13 @@ class cTicks
 	 *
 	 * @warning Always call insert and end tick in pairs!
 	 */
-	public function pf_insTick($strTickName)
+	public function pf_insTick($strTickName, $endPrevious = false)
 	{
+		if ($endPrevious && !empty($this->startedTickName)) {
+			$this->pf_endTick($this->startedTickName);
+		}
 		$this->arrTicks[$strTickName] = $this->pf_getTickStamp();
+		$this->startedTickName = $strTickName;
 	}
 	
 	/** End a named tick (calculate duration) */
