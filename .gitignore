@@ -4,3 +4,4 @@
 *.lnk
 /.my.script.cnf
 /.err.log*
+/cached_dates.js
