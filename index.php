@@ -10,6 +10,9 @@ define('NO_HACKING', 1);
 //header("Content-type: text/plain; charset=utf-8");
 require('./_top.php');
 
+// setup performance check
+$oTicks = new cTicks();
+
 // time limit
 set_time_limit(600);
 
@@ -60,7 +63,9 @@ if ($strSecretUserStr==$strSecretStr)
 // Check date format, get timezone
 //
 $numDateTZ = date("Z",strtotime($strDate2Check))/3600;
+$oTicks->pf_insTick('RC min-max check');
 $arrLocalMaxMinRC = $oData->pf_getLocalMaxMinRC($numDateTZ);
+$oTicks->pf_endTick('RC min-max check');
 if (empty($strDate2Check))
 {
 	$strTplFile = 'index';

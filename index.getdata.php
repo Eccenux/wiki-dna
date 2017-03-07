@@ -45,7 +45,7 @@ if (!defined('NO_HACKING'))
 //
 // 0. ticks and cache init
 //
-$oTicks = new cTicks();
+//$oTicks = new cTicks();
 //$oCache = new cCache($arrMyCnf['dna']['cache_salt']);	// moved to top
 
 //
