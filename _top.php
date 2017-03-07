@@ -25,12 +25,14 @@
 	//die();
 
 	// init data manipulation
-	require_once './lib/data.class.php';
-	$arrSrcDb = $arrMyCnf[$arrMyCnf['dna']['srcdb']];
-	$oData = new cMainData(
-		$arrSrcDb['host'], $arrSrcDb['dbname'],
-		$arrSrcDb['user'], $arrSrcDb['password']
-	);
+	if (!defined('NO_DB')) {
+		require_once './lib/data.class.php';
+		$arrSrcDb = $arrMyCnf[$arrMyCnf['dna']['srcdb']];
+		$oData = new cMainData(
+			$arrSrcDb['host'], $arrSrcDb['dbname'],
+			$arrSrcDb['user'], $arrSrcDb['password']
+		);
+	}
 
 	// set timezone
 	if (function_exists('date_default_timezone_set'))
