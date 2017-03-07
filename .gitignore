@@ -3,4 +3,4 @@
 /.proj/nbproject/private
 *.lnk
 /.my.script.cnf
-/.err.log
+/.err.log*
