@@ -1,0 +1,9 @@
+{
+    "name" : "dna",
+    "title" : "DNA",
+    "description" : "Nowe artykuły i statystyki dla Dnia Nowego Artykułu (WP:DNA).",
+    "url" : "https://tools.wmflabs.org/dna/",
+    "keywords" : "counter, articles, wikipedia",
+    "author" : "Maciej Nux Jaros",
+    "repository" : "https://github.com/Eccenux/wiki-dna.git"
+}
