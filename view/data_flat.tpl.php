@@ -1,4 +1,6 @@
-<table>
+<script type="text/javascript" src="./lib/sortable.js?v2"></script>
+
+<table class="sortable">
 	<tr>
 		<th>Osoba</th>
 		<th>Tytuł</th>
