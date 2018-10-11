@@ -113,3 +113,29 @@ table th
 {
 	background-color:#fdd;
 }
+
+/* mini menu (quick links) */
+.mini-menu ul
+,.mini-menu li
+{
+	margin:0;
+	padding:0;
+	list-style: none;
+	list-style-image: none;
+	display: inline-block;
+}
+.mini-menu
+{
+	margin-bottom: 1em;
+	padding-bottom: 1em;
+}
+.mini-menu li:before
+{
+	content:'•';
+	padding:0 .5em;
+}
+.mini-menu li:first-child:before
+{
+	content:'';
+	padding:0;
+}

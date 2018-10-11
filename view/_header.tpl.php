@@ -9,7 +9,7 @@
 	<meta name="author" content="Maciej Jaros" />
 	<meta name="copyright" content="Maciej Jaros" />
 
-	<link rel="stylesheet" type="text/css" href="view/main.css" />
+	<link rel="stylesheet" type="text/css" href="view/main.css?2327" />
 
 	<!-- time en(de)coding & Calendar -->
 	<link href="view/calend_t.css?0111" rel="stylesheet" type="text/css" />

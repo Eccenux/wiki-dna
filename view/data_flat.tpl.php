@@ -1,9 +1,10 @@
 <?php if (!empty($strDate2Check)) { ?>
-<p>
-	<a href="/dna/">Kalendarz</a>
-	&bull;
-	<a href="/dna/<?=$strDate2Check?>">Hierarchiczna lista</a>
-</p>
+<nav class="mini-menu">
+	<ul>
+		<li><a href="/dna/">Kalendarz</a></li>
+		<li><a href="/dna/<?=$strDate2Check?>">Hierarchiczna lista</a></li>
+	</ul>
+</nav>
 <?php } ?>
 
 <script type="text/javascript" src="./lib/sortable.js?v2"></script>
