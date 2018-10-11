@@ -40,7 +40,7 @@
 		
 		<th>tytuł</th>
 		<th title="wielkość strony przy utworzeniu">wlk. początkowa</th>
-		<th title="wielkość strony nakoniec dnia">wlk. końcowa</th>
+		<th title="wielkość strony na koniec dnia">wlk. końcowa</th>
 	</tr>
 	<!--
 	<tr>

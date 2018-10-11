@@ -1,8 +1,8 @@
 <table>
 	<tr>
-		<th>Tytuł</th>
-		<th title="wielkość strony nakoniec dnia">Wielkość</th>
 		<th>Osoba</th>
+		<th>Tytuł</th>
+		<th title="wielkość strony na koniec dnia">Wielkość</th>
 	</tr>
 		<?php foreach ($arrDNAUserData as &$u) { ?>
 			<?php foreach ($u['pages'] as &$p) { ?>
