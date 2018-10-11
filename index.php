@@ -2,6 +2,8 @@
 /**
 	@file
 	@brief Main file
+
+	@todo OMG, refactor this someday maybe... :]
 	
 	@see \a .info.php (Main page) for details about the license and description of this project.
 	@see \a index.getdata.php Main script controling the flow of gathering data
