@@ -47,7 +47,7 @@ $oData->allowSlow = empty($_GET['allow_slow']) ? false : true;
 $numMinEndSize = $arrMyCnf['dna']['min_len'];
 $strPageTitle = 'DNA';
 $strDieMessage = '';
-$strTplFile = 'data';
+$strTplFile = empty($_GET['flat']) ? 'data' : 'data_flat';
 $strPageBaseURL = $arrSrcDb['page_base_url'];
 $isAccuracyNeeded=false;
 // use "secret" word to bypass some checks and optimizations...
