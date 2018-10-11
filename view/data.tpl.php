@@ -1,3 +1,11 @@
+<?php if (!empty($strDate2Check)) { ?>
+<p>
+	<a href="/dna/">Kalendarz</a>
+	&bull;
+	<a href="/dna/<?=$strDate2Check?>?flat=1">Płaska, sortowalna lista</a>
+</p>
+<?php } ?>
+
 <script type="text/javascript">
 	/**
 	 * Push/replace history for shorter URL.
