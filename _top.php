@@ -24,16 +24,6 @@
 	//var_export($arrMyCnf);
 	//die();
 
-	// init data manipulation
-	if (!defined('NO_DB')) {
-		require_once './lib/data.class.php';
-		$arrSrcDb = $arrMyCnf[$arrMyCnf['dna']['srcdb']];
-		$oData = new cMainData(
-			$arrSrcDb['host'], $arrSrcDb['dbname'],
-			$arrSrcDb['user'], $arrSrcDb['password']
-		);
-	}
-
 	// set timezone
 	if (function_exists('date_default_timezone_set'))
 	{
@@ -42,6 +32,16 @@
 	else
 	{
 		die ('date_default_timezone_set does not exist!');
+	}
+
+	// init data manipulation
+	if (!defined('NO_DB')) {
+		require_once './lib/data.class.php';
+		$arrSrcDb = $arrMyCnf[$arrMyCnf['dna']['srcdb']];
+		$oData = new cMainData(
+			$arrSrcDb['host'], $arrSrcDb['dbname'],
+			$arrSrcDb['user'], $arrSrcDb['password']
+		);
 	}
 
 	// include other classes
