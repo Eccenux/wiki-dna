@@ -3,7 +3,7 @@
      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pl">
 <head>
-	<title><?=$strPageTitle?></title>
+	<title><?=$strPageTitle?> <?php if (!empty($strDate2Check)) { echo $strDate2Check; } ?></title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
 	<meta name="author" content="Maciej Jaros" />
@@ -25,7 +25,7 @@
 	ncalend.err_parse_time = 'Nieprawid\u0142owy format czasu!\nSpr\u00F3buj 13:10, albo 14:57:29';
 	// -->
 	</script>
- </head>
+</head>
 <body>
 <div id="header">
 	<p><?=$strPageTitle?></p>
@@ -37,3 +37,15 @@
 <?var_export($_SERVER)?>
 </pre>
 <?php /**/ ?>
+
+<?php if (!empty($strDate2Check)) { ?>
+<nav class="mini-menu">
+	<ul>
+		<li><a href="<?=$strBaseURL?><?=date("Y-m-d", strtotime("-1 day", strtotime($strDate2Check)))?>">Poprzedni</a></li>
+		<li><?=$strDate2Check?></li>
+		<?php if ($strDate2Check != date("Y-m-d")) { ?>
+			<li><a href="<?=$strBaseURL?><?=date("Y-m-d", strtotime("+1 day", strtotime($strDate2Check)))?>">Następny</a></li>
+		<?php } ?>
+	</ul>
+</nav>
+<?php } ?>
