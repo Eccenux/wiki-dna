@@ -1,8 +1,8 @@
 <?php if (!empty($strDate2Check)) { ?>
 <nav class="mini-menu">
 	<ul>
-		<li><a href="/dna/">Kalendarz</a></li>
-		<li><a href="/dna/<?=$strDate2Check?>">Hierarchiczna lista</a></li>
+		<li><a href="<?=$strBaseURL?>">Kalendarz</a></li>
+		<li><a href="<?=$strBaseURL?><?=$strDate2Check?>">Hierarchiczna lista</a></li>
 	</ul>
 </nav>
 <?php } ?>

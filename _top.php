@@ -33,7 +33,10 @@
 	{
 		die ('date_default_timezone_set does not exist!');
 	}
-
+	
+	// base URL of DNA site
+	$strBaseURL = empty($arrMyCnf['dna']['base_url']) ? '/dna/' : $arrMyCnf['dna']['base_url'];
+	
 	// init data manipulation
 	if (!defined('NO_DB')) {
 		require_once './lib/data.class.php';
