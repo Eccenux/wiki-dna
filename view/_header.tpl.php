@@ -31,3 +31,9 @@
 	<p><?=$strPageTitle?></p>
 </div>
 <div id="container">
+<?php /** ?>
+<pre>
+<?var_export($_GET)?>
+<?var_export($_SERVER)?>
+</pre>
+<?php /**/ ?>
