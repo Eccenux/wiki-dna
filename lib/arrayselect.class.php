@@ -24,10 +24,13 @@ class cArraySelector
 	 */
 	private function pf_reduceData($strPartialResult, $arrCurValue)
 	{
-		$v = $arrCurValue[$this->strSelColumn];
-		if (!preg_match("#{$this->strSeparator}{$v}({$this->strSeparator}|$)#", $strPartialResult))
-		{
-			$strPartialResult .= $this->strSeparator.$v;
+		if (isset($arrCurValue[$this->strSelColumn])) {
+			$v = $arrCurValue[$this->strSelColumn];
+			// only add if unique
+			if (!preg_match("#{$this->strSeparator}{$v}({$this->strSeparator}|$)#", $strPartialResult))
+			{
+				$strPartialResult .= $this->strSeparator.$v;
+			}
 		}
 		return $strPartialResult;
 	}
@@ -37,6 +40,9 @@ class cArraySelector
 	 *
 	 * Call this to select values of a \a $strColumn from \a $arrData
 	 * which will be concatenated to a string separated by \a $strSeparator.
+	 *
+	 * Records that don't have the column will be skipped.
+	 * Only unique values will be returned.
 	 *
 	 * @param array $arrData
 	 * @param string $strColumn
@@ -55,4 +61,41 @@ class cArraySelector
 	}
 }
 
-?>
+/**
+$arrPages = array (
+  0 =>
+  array (
+    'user_id' => '0',
+    'page_id' => '4540768',
+    'start_len' => '2567',
+  ),
+  1 =>
+  array (
+    'user_id' => '0',
+    'page_id' => '4541001',
+    'start_len' => '20',
+  ),
+  286 =>
+  array (
+    'user_id' => '966876',
+    'page_id' => '4540908',
+    'start_len' => '2696',
+  ),
+  287 =>
+  array (
+    'user_id' => '966895',
+    'actor_id' => '123',
+    'page_id' => '4541074',
+    'start_len' => '3065',
+  ),
+);
+
+$oArraySelector = new cArraySelector();
+$vUsers = $oArraySelector->pf_selectData($arrPages, 'user_id');
+echo "\n";
+var_export($vUsers);
+
+$vActors = $oArraySelector->pf_selectData($arrPages, 'actor_id');
+echo "\n";
+var_export($vActors);
+/**/
