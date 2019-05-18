@@ -166,19 +166,24 @@ unset($arrPages, $arrPageExtra, $arrPageLastLen, $arrUsers);
 //
 function pf_cmpUsers($b, $a)
 {
-    if ($a['total_ok'] == $b['total_ok'])
+	if ($a['total_ok'] == $b['total_ok'])
 	{
-        return ($a['total_len'] - $b['total_len']);
-    }
-    return ($a['total_ok'] - $b['total_ok']);
+		return ($a['total_len'] - $b['total_len']);
+	}
+	return ($a['total_ok'] - $b['total_ok']);
 }
 function pf_cmpPages($b, $a)
 {
-    if ($a['end_len'] == $b['end_len'])
+	if ($a['end_len'] == $b['end_len'])
 	{
-        return ($a['start_len'] - $b['start_len']);
-    }
-    return ($a['end_len'] - $b['end_len']);
+		// sort by id to avoid random re-sort
+		if ($a['start_len'] == $b['start_len'])
+		{
+			return ($a['page_id'] - $b['page_id']);
+		}
+		return ($a['start_len'] - $b['start_len']);
+	}
+	return ($a['end_len'] - $b['end_len']);
 }
 
 /**/
