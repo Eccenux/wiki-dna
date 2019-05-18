@@ -313,7 +313,7 @@ class cMainData
 			$strSQL = "SELECT actor_id as id, actor_name FROM actor
 				WHERE
 					actor_id IN ($idList)
-					actor_user is not null
+					AND actor_user IS NOT NULL
 			";
 		} else {
 			$strSQL = "SELECT actor_user as id, actor_name FROM actor
