@@ -148,7 +148,7 @@ class cMainData
 		@param [in] $numDateTZ A project timezone at that date
 		@param [in] $isAccuracyNeeded true if accuracy is needed (and RC must not be used)
 		
-		@return $arrPages an array of pages containing: user_id, page_id, start_len
+		@return $arrPages an array of pages containing: actor_id, page_id, start_len
 	*/
 	public function pf_getPagesBasics($strDay, $numDateTZ, $isAccuracyNeeded=false)//, $numMinStartSize)
 	{
@@ -202,21 +202,21 @@ class cMainData
 		// finally get data of pages created on that date
 		if (!$isInRC)
 		{
-			$strSQL = "SELECT rev_user AS user_id, rev_page AS page_id, rev_len AS start_len
+			$strSQL = "SELECT rev_actor AS actor_id, rev_page AS page_id, rev_len AS start_len
 				FROM revision
 				WHERE
 					rev_id IN ($vRevs)
 					AND (".str_replace('{column}', 'rev_timestamp', $vStamps).")
-				ORDER BY user_id
+				ORDER BY actor_id
 			";
 		}
 		else
 		{
-			$strSQL = "SELECT rc_user AS user_id, rc_cur_id AS page_id, rc_new_len AS start_len
+			$strSQL = "SELECT rc_actor AS actor_id, rc_cur_id AS page_id, rc_new_len AS start_len
 				FROM recentchanges
 				WHERE rc_type=1
 					AND (".str_replace('{column}', 'rc_timestamp', $vStamps).")
-				ORDER BY user_id
+				ORDER BY actor_id
 			";
 		}
 		$vPages = $this->pf_fetchAllSQL($strSQL);
@@ -289,15 +289,16 @@ class cMainData
 	}
 
 	/**
-		Get user info for DNA.
+		Get user/actor info for DNA.
 		
 		Currently only gets user name for the pages given in the pages array.
 		
-		@param [in] $arrPages The array of pages containing at least user_id
+		@param [in] $arrPages The array of pages containing at least `user_id` or `actor_id`.
+		@param [in] $useActors If true then assume `actor_id` is used.
 		
 		@return an array with key=>val set to: user_id=>user_name
 	*/
-	public function pf_getUserInfo(&$arrPages)
+	public function pf_getUserInfo(&$arrPages, $useActors = false)
 	{
 		if (empty($arrPages))
 		{
@@ -305,19 +306,26 @@ class cMainData
 		}
 
 		$oArraySelector = new cArraySelector();
-		$vUsers = $oArraySelector->pf_selectData($arrPages, 'user_id');
+		$idList = $oArraySelector->pf_selectData($arrPages, $useActors ? 'actor_id' : 'user_id');
 
-		$strSQL = "SELECT user_id, user_name FROM user
-			WHERE
-				user_id IN ($vUsers)
-		";
+		if ($useActors) {
+			$strSQL = "SELECT actor_id as id, actor_name FROM actor
+				WHERE
+					actor_id IN ($idList)
+			";
+		} else {
+			$strSQL = "SELECT actor_user as id, actor_name FROM actor
+				WHERE
+					actor_user IN ($idList)
+			";
+		}
 		$vUsers = $this->pf_fetchAllSQL($strSQL);
 		$arrRet = array();
 		if (!empty($vUsers))
 		{
 			foreach ($vUsers as $arr)
 			{
-				$arrRet[$arr['user_id']] = $arr['user_name'];
+				$arrRet[$arr['id']] = $arr['actor_name'];
 			}
 		}
 		return $arrRet;

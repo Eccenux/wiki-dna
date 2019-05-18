@@ -114,7 +114,8 @@ if ($isCacheClear)
 {
 	$oCache->pf_delFromCache($arrMyCnf['dna']['cache_page_basics_name'], $strDate2Check);
 	$oCache->pf_delFromCache($arrMyCnf['dna']['cache_last_len_name'], $strDate2Check);
-	$oCache->pf_delFromCache($arrMyCnf['dna']['cache_users_name'], $strDate2Check);
+	$oCache->pf_delFromCache($arrMyCnf['dna']['cache_users_name'], $strDate2Check);	// why did I kept cache names in cnf?
+	$oCache->pf_delFromCache('actors', $strDate2Check);
 	$oCache->pf_delFromCache($arrMyCnf['dna']['cache_page_extra_name'], $strDate2Check);
 }
 

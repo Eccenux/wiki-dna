@@ -79,16 +79,29 @@ if ($arrPageLastLen===false)
 }
 
 //
-// 3. get user_name FROM user for each user_id
+// 3. get actor_name FROM actor for each user_id/actor_id
 //
-$arrUsers = $oCache->pf_readFromCache($arrMyCnf['dna']['cache_users_name'], $strDate2Check);
-if ($arrUsers===false)
-{
-	$oTicks->pf_insTick('user info');
-	$arrUsers = $oData->pf_getUserInfo($arrPages);
-	$oTicks->pf_endTick('user info');
+// backward comptatibily -- get user data by `user_id` if pages were cached with `user_id`.
+if (!empty($arrPages) && isset($arrPages[0]['user_id'])) {
+	$arrUsers = $oCache->pf_readFromCache($arrMyCnf['dna']['cache_users_name'], $strDate2Check);
+	if ($arrUsers===false)
+	{
+		$oTicks->pf_insTick('user info');
+		$arrUsers = $oData->pf_getUserInfo($arrPages);
+		$oTicks->pf_endTick('user info');
 
-	$oCache->pf_writeToCache($arrMyCnf['dna']['cache_users_name'], $strDate2Check, $arrUsers);
+		$oCache->pf_writeToCache($arrMyCnf['dna']['cache_users_name'], $strDate2Check, $arrUsers);
+	}
+} else {
+	$arrUsers = $oCache->pf_readFromCache('actors', $strDate2Check);
+	if ($arrUsers===false)
+	{
+		$oTicks->pf_insTick('user info');
+		$arrUsers = $oData->pf_getUserInfo($arrPages, true);
+		$oTicks->pf_endTick('user info');
+
+		$oCache->pf_writeToCache('actors', $strDate2Check, $arrUsers);
+	}
 }
 
 //
@@ -115,7 +128,8 @@ foreach ($arrPages as $p)
 	{
 		continue;
 	}
-	$uid = intval($p['user_id']);
+	// this should work because we should either get only `user_id` xor only `actor_id` in page data
+	$uid = isset($p['user_id']) ? intval($p['user_id']) : intval($p['actor_id']);
 	if (empty($arrDNAUserData[$uid]))
 	{
 		$arrDNAUserData[$uid] = array
