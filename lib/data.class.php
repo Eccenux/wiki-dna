@@ -309,9 +309,11 @@ class cMainData
 		$idList = $oArraySelector->pf_selectData($arrPages, $useActors ? 'actor_id' : 'user_id');
 
 		if ($useActors) {
+			// actor_user is null for anonymous actors (IP)
 			$strSQL = "SELECT actor_id as id, actor_name FROM actor
 				WHERE
 					actor_id IN ($idList)
+					actor_user is not null
 			";
 		} else {
 			$strSQL = "SELECT actor_user as id, actor_name FROM actor
