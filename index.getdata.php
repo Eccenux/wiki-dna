@@ -130,6 +130,10 @@ foreach ($arrPages as $p)
 	}
 	// this should work because we should either get only `user_id` xor only `actor_id` in page data
 	$uid = isset($p['user_id']) ? intval($p['user_id']) : intval($p['actor_id']);
+	// merge anonymous edits into one record
+	if (!isset($arrUsers[$uid])) {
+		$uid = 'anon';
+	}
 	if (empty($arrDNAUserData[$uid]))
 	{
 		$arrDNAUserData[$uid] = array
