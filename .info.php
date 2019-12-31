@@ -9,9 +9,9 @@
 	http://pl.wikipedia.org/wiki/Wikipedia:Dzie%C5%84_Nowego_Artyku%C5%82u/statystyki
 	
 	@author
-		Copyright ©2010-2012 Maciej Jaros (pl:User:Nux, en:User:Nux)
+		Copyright ©2010-2019 Maciej Jaros (pl:User:Nux, en:User:Nux)
 	@version
-		1.2.0
+		1.5.0
 	
 	@section License
 	
