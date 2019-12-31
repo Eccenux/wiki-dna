@@ -46,18 +46,38 @@ body
 	height: 6em;
 	width:100%;
 	color: #363;
-}
-#footer p
-{
-	margin:0;
+	box-sizing: border-box;
 	padding:1em;
 }
-
+#footer :first-child
+{
+	margin-top: 0;
+}
+@supports (display: grid) {
+	body {
+		display: grid;
+		grid-template-areas: "head" "main" "foot";
+		grid-template-rows: 70px auto min-content;
+		min-height: 100vh;
+	}
+	#header {
+		grid-area: head;
+	}
+	#container {
+		grid-area: main;
+		padding: 1em;
+	}
+	#footer {
+		grid-area: foot;
+		position: static;
+		height: min-content;
+		padding: 1em;
+	}
+}
 /* ticks */
 #footer #ticks
 {
 	margin:0;
-	padding:0 1em;
 	color: #9a9;
 }
 #ticks ul
