@@ -25,7 +25,8 @@
 </head>
 <body>
 <div id="header">
-	<p><?=$strPageTitle?></p>
+	<h1><?=$strPageTitle?></h1>
+	<p>Wikimedia Toolforge<p>
 </div>
 <div id="container">
 <?php /** ?>
