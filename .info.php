@@ -18,8 +18,8 @@
 	You can use this program under the terms of any of the below licenses.
 	Note that in any case you have to state the author.
 	
-	@note Logo used in the header was made by Artur Jan Fijałkowski (WarX)
-	@note http://pl.wikipedia.org/wiki/Plik:Wikimedia_Community_Logo-Toolserver.svg
+	@note Logo used in the header was made by BDavis (WMF)
+	@note https://wikitech.wikimedia.org/wiki/File:Toolforge_logo.svg
 	
 	@subsection GPL GNU GPL v2
 	This program is free software; you can redistribute it and/or
