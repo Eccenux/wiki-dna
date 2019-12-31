@@ -9,6 +9,8 @@
 	<meta name="copyright" content="Maciej Jaros" />
 
 	<link rel="stylesheet" type="text/css" href="view/main.css?0055" />
+	
+	<link rel="shortcut icon" href="https://tools-static.wmflabs.org/toolforge/favicons/favicon.ico">
 
 	<!-- time en(de)coding & Calendar -->
 	<link href="view/calend_t.css?0111" rel="stylesheet" type="text/css" />
