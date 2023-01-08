@@ -72,8 +72,8 @@
 			<td rowspan="<?=$intRowSpan?>"><?=$intLP?></td>
 			<td rowspan="<?=$intRowSpan?>">
 				<?php if (!empty($u['user_name'])) { ?>
-					<a href="<?=$strPageBaseURL?>User:<?=$u['user_name']?>"><?=strtr($u['user_name'],'_',' ')?></a>
-					<span class="extra_links">(<a href="<?=$strPageBaseURL?>Special:Contributions/<?=$u['user_name']?>">wkład</a>)</span>
+					<a href="<?=$strPageBaseURL?>User:<?=urlencode($u['user_name'])?>"><?=strtr($u['user_name'],'_',' ')?></a>
+					<span class="extra_links">(<a href="<?=$strPageBaseURL?>Special:Contributions/<?=urlencode($u['user_name'])?>">wkład</a>)</span>
 				<?php } else { ?>
 					<i>Anonimowe edycje</i>
 				<?php } ?>
@@ -89,8 +89,8 @@
 					<?php $strClass=($p['is_ok']?'page_ok':'page_small')?>
 					
 					<td class="<?=$strClass?>">
-						<a href="<?=$strPageBaseURL?><?=$p['page_title']?>"><?=strtr($p['page_title'],'_',' ')?></a>
-						<span class="extra_links">(<a href="<?=$strPageBaseURL?><?=$p['page_title']?>?action=history">historia</a>)</span>
+						<a href="<?=$strPageBaseURL?><?=urlencode($p['page_title'])?>"><?=strtr($p['page_title'],'_',' ')?></a>
+						<span class="extra_links">(<a href="<?=$strPageBaseURL?><?=urlencode($p['page_title'])?>?action=history">historia</a>)</span>
 					</td>
 					<td class="<?=$strClass?>"><?=$p['start_len']?></td>
 					<td class="<?=$strClass?>"><?=$p['end_len']?></td>
