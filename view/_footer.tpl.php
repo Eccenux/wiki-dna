@@ -1,7 +1,7 @@
 
 </div>
 <div id="footer">
-	<p>Copyright &copy;2010-2019 Maciej Jaros (pl:User:Nux, en:User:Nux)</p>
+	<p>Copyright &copy;2010-2023 Maciej Jaros (pl:User:Nux, en:User:Nux)</p>
 	<?php if (!empty($arrTicks)) { ?>
 		<div id="ticks">
 			Czasy wykonania [s]:
