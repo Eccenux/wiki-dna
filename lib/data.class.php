@@ -214,7 +214,7 @@ class cMainData
 		{
 			$strSQL = "SELECT rc_actor AS actor_id, rc_cur_id AS page_id, rc_new_len AS start_len
 				FROM recentchanges
-				WHERE rc_type=1
+				WHERE rc_source = 'mw.new'
 					AND (".str_replace('{column}', 'rc_timestamp', $vStamps).")
 				ORDER BY actor_id
 			";
